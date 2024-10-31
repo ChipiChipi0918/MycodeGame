@@ -44,13 +44,19 @@ public class Player : MonoBehaviour
         scaleX = 0.9f; scaleY = 0.9f;
         yield return new WaitForSeconds(0.16f);
         scaleX = 1f; scaleY = 1f;
+
+        rb.gravityScale = 3f;
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            
-            transform.position += Vector3.left * 1f;
+            rb.gravityScale = 2f;
+            ReturnScale();
+
+            scaleX = 0.89f; scaleY = 1.02f;
+
+            transform.position += Vector3.left * 0.3f;
             shoot.GetComponent<Shoot>().Shooting();
             
 
