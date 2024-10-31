@@ -13,13 +13,12 @@ public class Shoot : MonoBehaviour
         
     }
     
-    void Update()
+    public void Shooting()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
+        Debug.Log("DD");
             GameObject Bullet = Instantiate(BulletPrefab);
             Bullet.transform.position = transform.position;
             Bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.right * BulletSpeed); ;
-        }
+        
     }
 }

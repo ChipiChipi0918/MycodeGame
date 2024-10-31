@@ -15,6 +15,7 @@ public class ShootingParticle : MonoBehaviour
     // Update is called once per frame
     public void inputK()
     {
-        myParticleSystem.Play();
+        
+        
     }
 }
