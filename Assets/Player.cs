@@ -51,7 +51,8 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))             //평소꺼
+        //if (Input.GetKey(KeyCode.K))                 // 예능용
         {
             rb.gravityScale = 2f;
             ReturnScale();
