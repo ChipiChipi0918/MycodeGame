@@ -18,17 +18,15 @@ public class BG1 : MonoBehaviour
         gameObject.transform.position += new Vector3(55.74f, 0, 0);
     }
     // Update is called once per frame
-    void Update()
+    public void EnterBk1()
     {
-
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player" && gay == true)
+        if(gay == true)
         {
             bg2.GetComponent<BG2>().MoveBG2();
             gay = false;
         }
+        
     }
+    
     
 }

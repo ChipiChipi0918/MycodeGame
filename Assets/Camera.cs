@@ -50,7 +50,7 @@ public class Camera : MonoBehaviour
             elapsed += Time.deltaTime / halfDuration;
 
             tick += Time.deltaTime * m_roughness;
-            transform.position += new Vector3(Mathf.PerlinNoise(tick, 0) - .5f,Mathf.PerlinNoise(0, tick) - .4803f,0f) * m_magnitude * Mathf.PingPong(elapsed, halfDuration);
+            transform.position += new Vector3(Mathf.PerlinNoise(tick, 0) - .5f,Mathf.PerlinNoise(0, tick) - .4805f,0f) * m_magnitude * Mathf.PingPong(elapsed, halfDuration);
 
             yield return null;
         }

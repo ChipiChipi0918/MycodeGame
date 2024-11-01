@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
 
     public GameObject reload;
 
+    public GameObject bk1,bk2;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -149,6 +151,17 @@ public class Player : MonoBehaviour
         {
 
             isGrounded = true;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "BK1")
+        {
+            bk1.GetComponent<BG1>().EnterBk1();
+        }
+        if (collision.gameObject.tag == "BK2")
+        {
+            bk2.GetComponent<BG2>().EnterBk2();
         }
     }
 }
