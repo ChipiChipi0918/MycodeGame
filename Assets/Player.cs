@@ -25,7 +25,9 @@ public class Player : MonoBehaviour
 
     public GameObject ParticlePrefab;
 
+    public GameObject shake;
 
+    public GameObject reload;
 
     void Start()
     {
@@ -58,8 +60,8 @@ public class Player : MonoBehaviour
 
             transform.position += Vector3.left * 0.3f;
             shoot.GetComponent<Shoot>().Shooting();
-            
-
+            shake.GetComponent<Camera>().Shaking();
+            reload.GetComponent<Gun>().reloading();
             GameObject Particle = Instantiate(ParticlePrefab) as GameObject;
             Particle.transform.SetParent(this.transform, false);
 

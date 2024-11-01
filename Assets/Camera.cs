@@ -7,7 +7,22 @@ public class Camera : MonoBehaviour
     public float cameraSpeed = 5.0f;
 
     public GameObject player;
+    [SerializeField]
+    private float m_roughness;      //거칠기 정도
+    [SerializeField]
+    private float m_magnitude;      //움직임 범위
 
+    
+
+    private void Start()
+    {
+        
+    }
+    public void Shaking()
+    {
+        
+        StartCoroutine(Shake(0.4f));
+    }
     private void Update()
     {
         if (player.transform.position.y >= -2.75f)
@@ -23,5 +38,22 @@ public class Camera : MonoBehaviour
             this.transform.Translate(moveVector);
         }
 
+    }
+    IEnumerator Shake(float duration)
+    {
+        float halfDuration = duration / 2;
+        float elapsed = 0f;
+        float tick = Random.Range(-5f, 5f);
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime / halfDuration;
+
+            tick += Time.deltaTime * m_roughness;
+            transform.position += new Vector3(Mathf.PerlinNoise(tick, 0) - .5f,Mathf.PerlinNoise(0, tick) - .4803f,0f) * m_magnitude * Mathf.PingPong(elapsed, halfDuration);
+
+            yield return null;
+        }
+        
     }
 }
