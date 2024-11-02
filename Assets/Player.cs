@@ -33,7 +33,10 @@ public class Player : MonoBehaviour
 
     public GameObject laserT;
 
+    public GameObject bulletUI;
+
     public int BulletConunt = 5;
+    
 
     void Start()
     {
@@ -79,11 +82,13 @@ public class Player : MonoBehaviour
             shoot.GetComponent<Shoot>().Shooting();
             shake.GetComponent<Camera>().Shaking();
             reload.GetComponent<Gun>().reloading();
-            
+            bulletUI.GetComponent<BulletUI>().BulletCounting();
             GameObject Particle = Instantiate(ParticlePrefab) as GameObject;
             Particle.transform.SetParent(this.transform, false);
 
             BulletConunt--;
+
+            
         }
         if (BulletConunt <= 0)
         {
