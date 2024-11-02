@@ -7,7 +7,7 @@ public class enemy : MonoBehaviour
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
     public float jumpForce = 10f;
-    private bool isGrounded;
+    private bool isGrounded = true;
 
     void Update()
     {

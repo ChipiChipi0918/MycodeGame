@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.R))
         {
+            BulletConunt = 0;
             reload.GetComponent<Gun>().BulletReload();
         }
         
@@ -86,7 +87,10 @@ public class Player : MonoBehaviour
         }
         if (BulletConunt <= 0)
         {
+            
+            
             laserT.GetComponent<laser>().laserOff();
+
         }
         else
         {
