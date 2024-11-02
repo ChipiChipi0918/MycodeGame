@@ -14,12 +14,13 @@ public class BulletUI : MonoBehaviour
 
     private void Update()
     {
+        UpdateBulletUI();
         if (Input.GetKeyDown(KeyCode.R))
         {
-            UpdateBulletUI();
-            Invoke("EndReload", 0.5f);
-            UpdateBulletUI();
-            bulletCount = 5;
+            bulletCount = 0;
+            Invoke("EndReload", 0.499f);
+            
+            
         }
     }
     void EndReload()
