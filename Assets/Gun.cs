@@ -9,6 +9,8 @@ public class Gun : MonoBehaviour
     public float reloadSpeed = 1000f;
     public bool reload = false;
     public float currentRotation = 0f; // 현재 회전 각도
+
+    public GameObject shoot;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,17 +29,16 @@ public class Gun : MonoBehaviour
         transform.localScale = new Vector3(2.8f, 2.8f, 2f);
 
     }
+    public void BulletReload()
+    {
+        reload = true;
+        currentRotation = 0f;
+
+        Invoke("EndReload", 0.5f);
+    }
     // Update is called once per frame
     public void Update()
     {
-        
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            reload = true;
-            currentRotation = 0f;
-        }
-
         if (reload)
         {
             
@@ -52,10 +53,17 @@ public class Gun : MonoBehaviour
             {
                 reload = false;
                 transform.eulerAngles = new Vector3(0, 0, 2.558f);
+                
             }
-
+            
 
         }
 
+
+        
+    }
+    void EndReload()
+    {
+        shoot.GetComponent<Player>().ReloadingEnd();
     }
 }

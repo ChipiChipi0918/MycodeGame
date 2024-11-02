@@ -31,6 +31,10 @@ public class Player : MonoBehaviour
 
     public GameObject bk1,bk2;
 
+    public GameObject laserT;
+
+    public int BulletConunt = 5;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -51,10 +55,19 @@ public class Player : MonoBehaviour
 
         rb.gravityScale = 3f;
     }
+    public void ReloadingEnd()
+    {
+        BulletConunt = 5;
+    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))             //Æò¼Ò²¨
-        //if (Input.GetKey(KeyCode.K))                 // ¿¹´É¿ë
+        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            reload.GetComponent<Gun>().BulletReload();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.K) && BulletConunt >0)             //Æò¼Ò²¨
         {
             rb.gravityScale = 2f;
             ReturnScale();
@@ -65,12 +78,25 @@ public class Player : MonoBehaviour
             shoot.GetComponent<Shoot>().Shooting();
             shake.GetComponent<Camera>().Shaking();
             reload.GetComponent<Gun>().reloading();
+            
             GameObject Particle = Instantiate(ParticlePrefab) as GameObject;
             Particle.transform.SetParent(this.transform, false);
 
-
+            BulletConunt--;
         }
-
+        if (BulletConunt <= 0)
+        {
+            laserT.GetComponent<laser>().laserOff();
+        }
+        else
+        {
+            laserT.GetComponent<laser>().ResetA();
+        }
+        
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    reload.GetComponent<Gun>().BulletReload();
+        //}
 
         transform.localScale = new Vector3(scaleX, scaleY, -1f);
 
