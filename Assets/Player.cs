@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static UnityEngine.ParticleSystem;
 
 public class Player : MonoBehaviour
 {
@@ -23,8 +24,6 @@ public class Player : MonoBehaviour
 
     public GameObject shoot;
 
-    public GameObject ParticlePrefab;
-
     public GameObject shake;
 
     public GameObject reload;
@@ -35,9 +34,13 @@ public class Player : MonoBehaviour
 
     public GameObject bulletUI;
 
-    public int BulletConunt = 5;
-    
+    public GameObject ParticlePrefab_Bullet;
 
+    public GameObject ParticlePrefab_Die;
+
+    public int BulletConunt = 5;
+
+    public float slowFactor = 0.1f;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -83,7 +86,7 @@ public class Player : MonoBehaviour
             shake.GetComponent<Camera>().Shaking();
             reload.GetComponent<Gun>().reloading();
             bulletUI.GetComponent<BulletUI>().BulletCounting();
-            GameObject Particle = Instantiate(ParticlePrefab) as GameObject;
+            GameObject Particle = Instantiate(ParticlePrefab_Bullet) as GameObject;
             Particle.transform.SetParent(this.transform, false);
 
             BulletConunt--;
@@ -112,6 +115,8 @@ public class Player : MonoBehaviour
         float moveInput = Input.GetAxis("Horizontal");
         moveDirection = new Vector2(moveInput, 0);
 
+
+        
 
         if (Input.GetButtonDown("Jump") && isGrounded && !isDashing)
         {
@@ -187,6 +192,15 @@ public class Player : MonoBehaviour
 
             isGrounded = true;
         }
+
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Sawblade")
+        {
+            Debug.Log("¿Ö¾ÈµÊ");
+            Time.timeScale = slowFactor;
+
+            Invoke("Die", 0.2f);
+
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -198,5 +212,22 @@ public class Player : MonoBehaviour
         {
             bk2.GetComponent<BG2>().EnterBk2();
         }
+
+
+    }
+    void Die()
+    {
+        GameObject Particle = Instantiate(ParticlePrefab_Die) as GameObject;
+        Particle.transform.SetParent(this.transform, false);
+        shake.GetComponent<Camera>().superShaking();
+        Time.timeScale = 1f;
+
+
+        Invoke("Destory", 0.25f);
+    }
+
+    void Destory()
+    {
+        Destroy(gameObject);
     }
 }

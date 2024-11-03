@@ -7,6 +7,7 @@ TagManager:
   - Sawblade
   - BK1
   - BK2
+  - Enemy
   layers:
   - Default
   - TransparentFX

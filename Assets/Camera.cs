@@ -23,6 +23,12 @@ public class Camera : MonoBehaviour
         
         StartCoroutine(Shake(0.4f));
     }
+    public void superShaking()
+    {
+        m_roughness = m_roughness * 10f;
+        m_magnitude = m_magnitude * 5f;
+        StartCoroutine(Shake(0.4f));
+    }
     //public void CameraS()
     //{
     //    usingShake = true;
@@ -80,8 +86,9 @@ public class Camera : MonoBehaviour
             
         }
     }
-        //public void CameraSend()
-        //{
-        //   usingShake = false;
-        //}
-    }
+
+    //public void CameraSend()
+    //{
+    //   usingShake = false;
+    //}
+}
