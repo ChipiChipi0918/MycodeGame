@@ -7,6 +7,9 @@ public class Spawn : MonoBehaviour
     public GameObject rangeObject;
     BoxCollider2D rangeCollider;
 
+    public GameObject enemy1;
+    public GameObject enemy2;
+
     private void Awake()
     {
         rangeCollider = rangeObject.GetComponent<BoxCollider2D>();
@@ -26,20 +29,33 @@ public class Spawn : MonoBehaviour
         Vector3 respawnPosition = originPosition + RandomPostion;
         return respawnPosition;
     }
-    public GameObject enemy;
+    
     private void Start()
     {
-        StartCoroutine(RandomRespawn_Coroutine());
+        StartCoroutine(RandomRespawn_Coroutine1());
+        StartCoroutine(RandomRespawn_Coroutine2());
     }
 
-    IEnumerator RandomRespawn_Coroutine()
+    IEnumerator RandomRespawn_Coroutine1()
     {
         while (true)
         {
             yield return new WaitForSeconds(3f);
 
             // 생성 위치 부분에 위에서 만든 함수 Return_RandomPosition() 함수 대입
-            GameObject instantCapsul = Instantiate(enemy, Return_RandomPosition(), Quaternion.identity);
+            GameObject instantCapsul = Instantiate(enemy1, Return_RandomPosition(), Quaternion.identity);
         }
+
+    }
+    IEnumerator RandomRespawn_Coroutine2()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(3f);
+
+            // 생성 위치 부분에 위에서 만든 함수 Return_RandomPosition() 함수 대입
+            GameObject instantCapsul = Instantiate(enemy2, Return_RandomPosition(), Quaternion.identity);
+        }
+
     }
 }

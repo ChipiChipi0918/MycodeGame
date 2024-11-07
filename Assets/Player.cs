@@ -222,7 +222,9 @@ public class Player : MonoBehaviour
         shake.GetComponent<Camera>().superShaking();
         Time.timeScale = 1f;
 
-
+        //transform.localScale = new Vector3(0.001f, 0.001f, -1f);
+        scaleX = 0.001f;
+        scaleY = 0.001f;
         Invoke("Destory", 0.25f);
     }
 
