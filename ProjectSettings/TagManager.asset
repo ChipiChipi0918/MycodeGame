@@ -8,6 +8,8 @@ TagManager:
   - BK1
   - BK2
   - Enemy
+  - bullet
+  - Notbullet
   layers:
   - Default
   - TransparentFX

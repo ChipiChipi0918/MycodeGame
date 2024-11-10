@@ -195,3 +195,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   jumpForce: 11
+  enemyHP: 3
+  shake: {fileID: 0}

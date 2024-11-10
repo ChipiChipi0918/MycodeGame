@@ -8,10 +8,17 @@ public class enemy : MonoBehaviour
     private Rigidbody2D rb;
     public float jumpForce = 10f;
     private bool isGrounded = true;
+    public int enemyHP = 3;
+    
 
     void Update()
     {
-        
+        if (enemyHP <= 0)
+        {
+            
+            Destroy(gameObject);
+
+        }
         
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
 
@@ -28,6 +35,19 @@ public class enemy : MonoBehaviour
         {
 
             isGrounded = true;
+        }
+
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "bullet")
+        {
+            transform.position += new Vector3(1.5f, 0.05f, 0);
+
+            UnityEngine.Camera.main.GetComponent<Camera>().Shaking();
+            enemyHP--;
+            
         }
     }
 }

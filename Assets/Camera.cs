@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -10,13 +11,19 @@ public class Camera : MonoBehaviour
     public GameObject player;
 
     private bool usingShake = false;
+
+    public float cameraSize = 5.0f;
+    private Camera mainCamera;
+
     [SerializeField]
     private float m_roughness;      //거칠기 정도
     [SerializeField]
     private float m_magnitude;      //움직임 범위
     private void Start()
     {
-
+        mainCamera = GetComponent<Camera>();
+        // 초기 카메라 크기 설정
+        //SetCameraSize(cameraSize);
     }
     public void Shaking()
     {
@@ -33,8 +40,23 @@ public class Camera : MonoBehaviour
     //{
     //    usingShake = true;
     //}
+
+
+    /*void SetCameraSize(float size)
+    {
+        if (mainCamera.orthographic)
+        {
+            mainCamera.orthographicSize = size; // Orthographic 카메라일 때만 조절
+        }
+        else
+        {
+            mainCamera.fieldOfView = size; // Perspective 카메라일 때는 fieldOfView로 조절
+        }
+    }*/
     private void Update()
     {
+
+
         if (player.transform.position.y >= -2.75f && usingShake == false)
         {
             Vector3 dir = player.transform.position - this.transform.position;
@@ -64,7 +86,7 @@ public class Camera : MonoBehaviour
 
                 tick += Time.deltaTime * m_roughness;
                 transform.position += new Vector3(Mathf.PerlinNoise(tick, 0) - .5f, Mathf.PerlinNoise(0, tick) - .4805f, 0f) * m_magnitude * Mathf.PingPong(elapsed, halfDuration);
-                Debug.Log("공중");
+                
                 yield return null;
             }
             
@@ -79,7 +101,7 @@ public class Camera : MonoBehaviour
                 Vector3 position = transform.position;
                 position.x += (Mathf.PerlinNoise(tick * 1.5f, 0) - 0.5f) * m_magnitude * Mathf.PingPong(elapsed, halfDuration);
                 transform.position = position;
-                Debug.Log("지면");
+                
                 yield return null;
                 
             }

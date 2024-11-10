@@ -195,7 +195,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Sawblade")
         {
-            Debug.Log("¿Ö¾ÈµÊ");
+            
             Time.timeScale = slowFactor;
 
             Invoke("Die", 0.2f);
