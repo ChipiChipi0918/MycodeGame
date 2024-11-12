@@ -23,13 +23,11 @@ public class Shoot : MonoBehaviour
 
     public void Shooting()
     {
-        
 
             GameObject Bullet = Instantiate(BulletPrefab);
             Bullet.transform.position = transform.position;
             Bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.right * BulletSpeed);
-
-
+            
     }
 
     
