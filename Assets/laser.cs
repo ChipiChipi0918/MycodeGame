@@ -10,7 +10,6 @@ public class laser : MonoBehaviour
 
     void Start()
     {
-        
         objectRenderer = GetComponent<Renderer>();
         ObjColor = objectRenderer.material.color;
     }
@@ -21,8 +20,7 @@ public class laser : MonoBehaviour
         
     }
     public void laserOff()
-    {
-        
+    { 
             hello = true;
             Color transparentColor = ObjColor;
             transparentColor.a = 0.2f;
@@ -33,7 +31,6 @@ public class laser : MonoBehaviour
 
     public void ResetA()
     {
-        
         objectRenderer.material.color = ObjColor;
         hello = false;
     }

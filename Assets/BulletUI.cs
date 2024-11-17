@@ -8,7 +8,7 @@ public class BulletUI : MonoBehaviour
 
     void Start()
     {
-        // 텍스트 초기화
+        // 텍스트 없애기
         UpdateBulletUI();
     }
 
@@ -19,8 +19,6 @@ public class BulletUI : MonoBehaviour
         {
             bulletCount = 0;
             Invoke("EndReload", 0.499f);
-            
-            
         }
     }
     void EndReload()
@@ -29,15 +27,11 @@ public class BulletUI : MonoBehaviour
     }
     public void BulletCounting()
     {
-         
-        
         if (bulletCount > 0)
         {
             bulletCount--;          
-            
         }
         UpdateBulletUI();
-
     }
     public void UpdateBulletUI()
     {

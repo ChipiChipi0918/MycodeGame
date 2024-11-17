@@ -45,22 +45,14 @@ public class Gun : MonoBehaviour
             float rotationThisFrame = reloadSpeed * Time.deltaTime;
             currentRotation += rotationThisFrame;
 
-
             transform.Rotate(Vector3.forward * rotationThisFrame);
-
-
             if (currentRotation >= 360f)
             {
                 reload = false;
                 transform.eulerAngles = new Vector3(0, 0, 2.558f);
                 
             }
-            
-
         }
-
-
-        
     }
     void EndReload()
     {

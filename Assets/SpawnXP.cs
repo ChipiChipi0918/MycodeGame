@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawn : MonoBehaviour
+public class SpawnXP : MonoBehaviour
 {
     public GameObject rangeObject;
     BoxCollider2D rangeCollider;
 
-    public GameObject enemy1;
-    public GameObject enemy2;
+    public GameObject xp;
+    
 
 
 
@@ -34,30 +34,17 @@ public class Spawn : MonoBehaviour
     
     private void Start()
     {
-        StartCoroutine(RandomRespawn_Coroutine1());
-        StartCoroutine(RandomRespawn_Coroutine2());
+        StartCoroutine(RandomRespawn());
     }
 
-    IEnumerator RandomRespawn_Coroutine1()
+    IEnumerator RandomRespawn()
     {
         while (true)
         {
             yield return new WaitForSeconds(3f);
 
-            // 생성 위치 부분에 위에서 만든 함수 Return_RandomPosition() 함수 대입
-            GameObject instantCapsul = Instantiate(enemy1, Return_RandomPosition(), Quaternion.identity);
+            GameObject instantCapsul = Instantiate(xp, Return_RandomPosition(), Quaternion.identity);
         }
-
     }
-    IEnumerator RandomRespawn_Coroutine2()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(3f);
-
-            // 생성 위치 부분에 위에서 만든 함수 Return_RandomPosition() 함수 대입
-            GameObject instantCapsul = Instantiate(enemy2, Return_RandomPosition(), Quaternion.identity);
-        }
-
-    }
+    
 }
