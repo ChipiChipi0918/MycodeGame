@@ -11,6 +11,7 @@ TagManager:
   - bullet
   - Notbullet
   - Ground
+  - target
   layers:
   - Default
   - TransparentFX
