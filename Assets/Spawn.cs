@@ -9,8 +9,11 @@ public class Spawn : MonoBehaviour
 
     public GameObject enemy1;
     public GameObject enemy2;
+    public GameObject enemy3;
 
-
+    public float enemy1spawntime = 2f;
+    public float enemy2spawntime = 3f;
+    public float enemy3spawntime = 5f;
 
     private void Awake()
     {
@@ -36,13 +39,14 @@ public class Spawn : MonoBehaviour
     {
         StartCoroutine(RandomRespawn_Coroutine1());
         StartCoroutine(RandomRespawn_Coroutine2());
+        StartCoroutine(RandomRespawn_Coroutine3());
     }
 
     IEnumerator RandomRespawn_Coroutine1()
     {
         while (true)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(enemy1spawntime);
 
             // 생성 위치 부분에 위에서 만든 함수 Return_RandomPosition() 함수 대입
             GameObject instantCapsul = Instantiate(enemy1, Return_RandomPosition(), Quaternion.identity);
@@ -53,10 +57,21 @@ public class Spawn : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(enemy2spawntime);
 
             // 생성 위치 부분에 위에서 만든 함수 Return_RandomPosition() 함수 대입
             GameObject instantCapsul = Instantiate(enemy2, Return_RandomPosition(), Quaternion.identity);
+        }
+
+    }
+    IEnumerator RandomRespawn_Coroutine3()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(enemy3spawntime);
+
+            // 생성 위치 부분에 위에서 만든 함수 Return_RandomPosition() 함수 대입
+            GameObject instantCapsul = Instantiate(enemy3, Return_RandomPosition(), Quaternion.identity);
         }
 
     }

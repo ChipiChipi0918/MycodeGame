@@ -51,5 +51,9 @@ public class enemy : MonoBehaviour
             enemyHP--;
             
         }
+        if (collision.gameObject.tag == "DeleteEnemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }

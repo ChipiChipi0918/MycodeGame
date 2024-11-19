@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemy2 : MonoBehaviour
+public class enemy3 : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 1f;
     private Rigidbody2D rb;
 
     public GameObject XpPrefab;
     public int enemyHP = 3;
+
+    public GameObject bulletPrefab;
+    public float attactRate = 2f;
+    private Transform target;
+    private float timeAfterAttack;
+
+
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        timeAfterAttack = 0f;
     }
 
     // Update is called once per frame
@@ -31,19 +39,29 @@ public class enemy2 : MonoBehaviour
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
 
 
+        timeAfterAttack += Time.deltaTime;
+
+        if (timeAfterAttack >= attactRate)
+        { 
+            timeAfterAttack = 0f;
+
+            GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "bullet")
         {
-            transform.position += new Vector3(3f, 0, 0);
+            transform.position += new Vector3(0.3f, 0, 0);
 
             UnityEngine.Camera.main.GetComponent<Camera>().Shaking();
             enemyHP--;
 
         }
-        if(collision.gameObject.tag == "DeleteEnemy")
+        if (collision.gameObject.tag == "DeleteEnemy")
         {
             Destroy(gameObject);
         }
