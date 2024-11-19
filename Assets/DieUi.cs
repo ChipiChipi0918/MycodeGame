@@ -6,7 +6,7 @@ public class DieUi : MonoBehaviour
 {
     private CanvasGroup canvasGroup;
     public float fadeDuration = 1.0f;
-    public float displayTime = 0.75f;
+    public float displayTime = 0.01f;
 
     void Start()
     {
@@ -26,6 +26,10 @@ public class DieUi : MonoBehaviour
             StartCoroutine(FadeInAndOut());
         }
     }
+    private void Update()
+    {
+        
+    }
 
     private IEnumerator FadeInAndOut()
     {
@@ -39,15 +43,15 @@ public class DieUi : MonoBehaviour
         yield return StartCoroutine(Fade(1f, 0f, fadeDuration));
     }
 
-    private IEnumerator Fade(float startAlpha, float endAlpha, float duration)
+    private IEnumerator Fade(float start, float end, float duration)
     {
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / duration);
+            canvasGroup.alpha = Mathf.Lerp(start, end, elapsedTime / duration);
             yield return null;
         }
-        canvasGroup.alpha = endAlpha;
+        canvasGroup.alpha = end;
     }
 }
