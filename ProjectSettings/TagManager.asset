@@ -12,6 +12,7 @@ TagManager:
   - Notbullet
   - Ground
   - target
+  - DeleteEnemy
   layers:
   - Default
   - TransparentFX
