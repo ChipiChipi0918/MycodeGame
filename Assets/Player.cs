@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private bool isDashing;
 
+    private bool shootingOk = true;
    // public Slider EXPSlider;
 
     private float dashTime;
@@ -72,6 +74,7 @@ public class Player : MonoBehaviour
     public void Getxp()
     {
         //Score++;
+        
     }
     public void ReloadingEnd()
     {
@@ -79,6 +82,7 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        
         /*EXPSlider.value = Score;
         if (Score >= LevelCount) 
         {
@@ -176,14 +180,26 @@ public class Player : MonoBehaviour
             reload.GetComponent<Gun>().BulletReload();
         }
     }
-
+    void GunCooltime()
+    {
+        shootingOk = true;
+        laserT.GetComponent<laser>().ResetA();
+    }
     private void Bulletshoot()
     {
-        if (Input.GetKeyDown(KeyCode.K) && BulletConunt > 0)             //Æò¼Ò²¨
+        if (Input.GetKeyDown(KeyCode.K) && BulletConunt > 0 && shootingOk == true)             //Æò¼Ò²¨
         {
+
+
+            shootingOk = false;
+
+            
+           laserT.GetComponent<laser>().laserOff();
+            
+
             rb.gravityScale = 2f;
             ReturnScale();
-
+            Invoke("GunCooltime", 0.3f);
             scaleX = 0.89f; scaleY = 1.02f;
 
             transform.position += Vector3.left * 0.3f;
