@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.6117647, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.792697, b: 0.4660377, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,7 +97,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 2589633698864868337}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7875bb099115ab744840c659453453cb, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -138,7 +138,7 @@ Rigidbody2D:
   m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.1
+  m_GravityScale: 0.35
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b189fe3071781084f9c1f7202f3e9a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetPosition: {fileID: 0}
 --- !u!1 &6099857742040533958
 GameObject:
   m_ObjectHideFlags: 0

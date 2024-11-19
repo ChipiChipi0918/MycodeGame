@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 15
+  XpPrefab: {fileID: 2589633698864868337, guid: a9041f9e544dc7742a416aede0597267, type: 3}
   enemyHP: 2
 --- !u!1 &8280707056423211751
 GameObject:

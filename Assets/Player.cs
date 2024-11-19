@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
+//using UnityEngine.UIElements;
 using static UnityEngine.ParticleSystem;
 
 public class Player : MonoBehaviour
@@ -18,6 +19,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isDashing;
+
+   // public Slider EXPSlider;
 
     private float dashTime;
     private Vector2 moveDirection;
@@ -38,18 +41,23 @@ public class Player : MonoBehaviour
 
     public GameObject ParticlePrefab_Die;
 
-    public int BulletConunt = 5;
+    public GameObject dieUi;
 
+    public int BulletConunt = 5;
+   // public int Score;
     public float slowFactor = 0.1f;
+    //public int LevelCount = 5;
     void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>();
+        //EXPSlider.maxValue = LevelCount;
+        //EXPSlider.value = Score;
     }
 
     void ReturnScale()
     {
         StartCoroutine("PrintAfterWait");
-
 
     }
     IEnumerator PrintAfterWait()
@@ -61,49 +69,26 @@ public class Player : MonoBehaviour
 
         rb.gravityScale = 3f;
     }
+    public void Getxp()
+    {
+        //Score++;
+    }
     public void ReloadingEnd()
     {
         BulletConunt = 5;
     }
     void Update()
     {
-        
-        if (Input.GetKeyDown(KeyCode.R))
+        /*EXPSlider.value = Score;
+        if (Score >= LevelCount) 
         {
-            BulletConunt = 0;
-            reload.GetComponent<Gun>().BulletReload();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.K) && BulletConunt >0)             //Æò¼Ò²¨
-        {
-            rb.gravityScale = 2f;
-            ReturnScale();
+            Score = 0;
+        }*/
 
-            scaleX = 0.89f; scaleY = 1.02f;
+        Reload();
 
-            transform.position += Vector3.left * 0.3f;
-            shoot.GetComponent<Shoot>().Shooting();
-            shake.GetComponent<Camera>().Shaking();
-            reload.GetComponent<Gun>().reloading();
-            bulletUI.GetComponent<BulletUI>().BulletCounting();
-            GameObject Particle = Instantiate(ParticlePrefab_Bullet) as GameObject;
-            Particle.transform.SetParent(this.transform, false);
+        Bulletshoot();
 
-            BulletConunt--;
-
-            
-        }
-        if (BulletConunt <= 0)
-        {
-            
-            
-            laserT.GetComponent<laser>().laserOff();
-
-        }
-        else
-        {
-            laserT.GetComponent<laser>().ResetA();
-        }
         
         //if (Input.GetKeyDown(KeyCode.R))
         //{
@@ -183,7 +168,48 @@ public class Player : MonoBehaviour
             rb.gravityScale = 3f;
         }
     }
+    private void Reload()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            BulletConunt = 0;
+            reload.GetComponent<Gun>().BulletReload();
+        }
+    }
 
+    private void Bulletshoot()
+    {
+        if (Input.GetKeyDown(KeyCode.K) && BulletConunt > 0)             //Æò¼Ò²¨
+        {
+            rb.gravityScale = 2f;
+            ReturnScale();
+
+            scaleX = 0.89f; scaleY = 1.02f;
+
+            transform.position += Vector3.left * 0.3f;
+            shoot.GetComponent<Shoot>().Shooting();
+            shake.GetComponent<Camera>().Shaking();
+            reload.GetComponent<Gun>().reloading();
+            bulletUI.GetComponent<BulletUI>().BulletCounting();
+            GameObject Particle = Instantiate(ParticlePrefab_Bullet) as GameObject;
+            Particle.transform.SetParent(this.transform, false);
+
+            BulletConunt--;
+
+
+        }
+        if (BulletConunt <= 0)
+        {
+
+
+            laserT.GetComponent<laser>().laserOff();
+
+        }
+        else
+        {
+            laserT.GetComponent<laser>().ResetA();
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -201,6 +227,7 @@ public class Player : MonoBehaviour
             Invoke("Die", 0.2f);
 
         }
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -217,6 +244,8 @@ public class Player : MonoBehaviour
     }
     void Die()
     {
+        dieUi.GetComponent<DieUi>().Hert();
+
         GameObject Particle = Instantiate(ParticlePrefab_Die) as GameObject;
         Particle.transform.SetParent(this.transform, false);
         shake.GetComponent<Camera>().superShaking();

@@ -32,8 +32,8 @@ public class Camera : MonoBehaviour
     }
     public void superShaking()
     {
-        m_roughness = m_roughness * 10f;
-        m_magnitude = m_magnitude * 5f;
+        m_roughness = m_roughness * 30f;
+        m_magnitude = m_magnitude * 10f;
         StartCoroutine(Shake(0.4f));
     }
     //public void CameraS()

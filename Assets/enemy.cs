@@ -9,13 +9,15 @@ public class enemy : MonoBehaviour
     public float jumpForce = 10f;
     private bool isGrounded = true;
     public int enemyHP = 3;
-    
 
+    public GameObject XpPrefab;
     void Update()
     {
         if (enemyHP <= 0)
         {
-            
+            GameObject Xp = Instantiate(XpPrefab);
+            Xp.transform.position = transform.position;
+            Xp.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 13);
             Destroy(gameObject);
 
         }

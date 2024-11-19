@@ -6,8 +6,8 @@ public class enemy2 : MonoBehaviour
 {
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
-    
-   
+
+    public GameObject XpPrefab;
     public int enemyHP = 3;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,9 @@ public class enemy2 : MonoBehaviour
     {
         if (enemyHP <= 0)
         {
-
+            GameObject Xp = Instantiate(XpPrefab);
+            Xp.transform.position = transform.position;
+            Xp.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 13);
             Destroy(gameObject);
 
         }
