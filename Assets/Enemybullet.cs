@@ -47,5 +47,18 @@ public class EnemyBullet : MonoBehaviour
             Destroy(gameObject,0.12f);
 
         }
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "bullet")
+        {
+            GameObject Particle = Instantiate(ParticlePrefab_Bullet, transform.position, transform.rotation);
+
+            //gameObject.tag = "Notbullet";
+            rb.velocity = Vector2.zero;
+            Destroy(gameObject, 0.12f);
+
+        }
     }
 }

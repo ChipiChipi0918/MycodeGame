@@ -1,19 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[Serializable]
+public class Enemy
+{
+    public GameObject enemyObj;
+    public float enemyspawntime;
+}
 
 public class Spawn : MonoBehaviour
 {
     public GameObject rangeObject;
     BoxCollider2D rangeCollider;
 
-    public GameObject enemy1;
-    public GameObject enemy2;
-    public GameObject enemy3;
-
-    public float enemy1spawntime = 2f;
-    public float enemy2spawntime = 3f;
-    public float enemy3spawntime = 5f;
+    public Enemy[] enemies;
 
     private void Awake()
     {
@@ -27,7 +28,7 @@ public class Spawn : MonoBehaviour
         float range_Y= rangeCollider.bounds.size.y;
         
 
-        range_Y = Random.Range((range_Y / 2) * -1, range_Y / 2);
+        range_Y = UnityEngine.Random.Range((range_Y / 2) * -1, range_Y / 2);
        
         Vector3 RandomPostion = new Vector3(2f, range_Y, 0f);
 
@@ -40,16 +41,19 @@ public class Spawn : MonoBehaviour
         StartCoroutine(RandomRespawn_Coroutine1());
         StartCoroutine(RandomRespawn_Coroutine2());
         StartCoroutine(RandomRespawn_Coroutine3());
+        StartCoroutine(RandomRespawn_Coroutine4());
     }
 
     IEnumerator RandomRespawn_Coroutine1()
     {
         while (true)
         {
-            yield return new WaitForSeconds(enemy1spawntime);
+            yield return new WaitForSeconds(enemies[0].enemyspawntime);
 
             // 생성 위치 부분에 위에서 만든 함수 Return_RandomPosition() 함수 대입
-            GameObject instantCapsul = Instantiate(enemy1, Return_RandomPosition(), Quaternion.identity);
+            GameObject instantCapsul = Instantiate(enemies[0].enemyObj, Return_RandomPosition(), Quaternion.identity);
+
+
         }
 
     }
@@ -57,10 +61,10 @@ public class Spawn : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(enemy2spawntime);
+            yield return new WaitForSeconds(enemies[1].enemyspawntime);
 
             // 생성 위치 부분에 위에서 만든 함수 Return_RandomPosition() 함수 대입
-            GameObject instantCapsul = Instantiate(enemy2, Return_RandomPosition(), Quaternion.identity);
+            GameObject instantCapsul = Instantiate(enemies[1].enemyObj, Return_RandomPosition(), Quaternion.identity);
         }
 
     }
@@ -68,10 +72,21 @@ public class Spawn : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(enemy3spawntime);
+            yield return new WaitForSeconds(enemies[2].enemyspawntime);
 
             // 생성 위치 부분에 위에서 만든 함수 Return_RandomPosition() 함수 대입
-            GameObject instantCapsul = Instantiate(enemy3, Return_RandomPosition(), Quaternion.identity);
+            GameObject instantCapsul = Instantiate(enemies[2].enemyObj, Return_RandomPosition(), Quaternion.identity);
+        }
+
+    }
+    IEnumerator RandomRespawn_Coroutine4()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(enemies[3].enemyspawntime);
+
+            // 생성 위치 부분에 위에서 만든 함수 Return_RandomPosition() 함수 대입
+            GameObject instantCapsul = Instantiate(enemies[3].enemyObj, Return_RandomPosition(), Quaternion.identity);
         }
 
     }
