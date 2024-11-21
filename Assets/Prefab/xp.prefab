@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3447304007849712673}
   m_Layer: 8
   m_Name: xp
-  m_TagString: Untagged
+  m_TagString: xp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPosition: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &6099857742040533958
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class EnemyBullet : MonoBehaviour
     
 
     [SerializeField]
-    private float bulletSpeed = 10f; // 속도 조절용
+    private float bulletSpeed = 10f; //속도 조절용
 
     private Rigidbody2D rb;
     private Vector2 direction;

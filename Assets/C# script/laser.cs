@@ -16,7 +16,7 @@ public class laser : MonoBehaviour
 
     void Update()
     {
-       
+       //æ»≥Á«œººø‰
         
     }
     public void laserOff()

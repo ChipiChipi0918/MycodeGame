@@ -8,7 +8,7 @@ public class Gun : MonoBehaviour
 
     public float reloadSpeed = 1000f;
     public bool reload = false;
-    public float currentRotation = 0f; // 현재 회전 각도
+    public float currentRotation = 0f; 
 
     public GameObject shoot;
     // Start is called before the first frame update

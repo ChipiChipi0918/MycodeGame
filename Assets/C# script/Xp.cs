@@ -5,7 +5,7 @@ using UnityEngine;
 public class Xp : MonoBehaviour
 {
     public GameObject targetPosition;
-    public GameObject player;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,18 +24,15 @@ public class Xp : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
 
-            Invoke("Destory", 3f);
-            
+            Destroy(gameObject, 3f);
+
         }
         if (collision.gameObject.tag == "Player")
         {
-            player.GetComponent<Player>().Getxp();
+            
             Destroy(gameObject);
         }
     }
 
-    void Destory()
-    {
-        Destroy(gameObject);
-    }
+
 }

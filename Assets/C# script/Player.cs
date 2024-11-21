@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Diagnostics;
+//using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
@@ -14,15 +14,20 @@ public class Player : MonoBehaviour
     public float dashSpeed = 20f;
     public float dashDuration = 0.2f;
 
+    public float xp = 0;
+    public float Lv = 1;
+    public float maxXp = 5;
+
     public float scaleX = 1f;
     public float scaleY = 1f;
+
 
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isDashing;
 
     private bool shootingOk = true;
-   // public Slider EXPSlider;
+    public Slider EXPSlider;
 
     private float dashTime;
     private Vector2 moveDirection;
@@ -46,15 +51,16 @@ public class Player : MonoBehaviour
     public GameObject dieUi;
 
     public int BulletConunt = 5;
-   // public int Score;
+    
     public float slowFactor = 0.1f;
-    //public int LevelCount = 5;
+    
     void Start()
     {
         
         rb = GetComponent<Rigidbody2D>();
-        //EXPSlider.maxValue = LevelCount;
-        //EXPSlider.value = Score;
+        
+
+        
     }
 
     void ReturnScale()
@@ -71,18 +77,25 @@ public class Player : MonoBehaviour
 
         rb.gravityScale = 3f;
     }
-    public void Getxp()
-    {
-        //Score++;
-        
-    }
+
     public void ReloadingEnd()
     {
         BulletConunt = 5;
     }
     void Update()
     {
-        
+        EXPSlider.maxValue = maxXp;
+        EXPSlider.value = xp;
+
+        if (maxXp <= xp)
+        {
+            xp = 0;
+            Lv++;
+            maxXp++;
+        }
+
+        Debug.Log(xp);
+        Debug.Log(Lv);
         /*EXPSlider.value = Score;
         if (Score >= LevelCount) 
         {
@@ -243,7 +256,11 @@ public class Player : MonoBehaviour
             Invoke("Die", 0.2f);
 
         }
-        
+        if (collision.gameObject.tag == "xp")
+        {
+            xp++;
+        }
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

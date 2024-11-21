@@ -17,8 +17,8 @@ public class enemy4 : MonoBehaviour
     private Transform target;
     private float timeAfterAttack;
 
+    public float nuckbackAngle = 20;
 
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +59,8 @@ public class enemy4 : MonoBehaviour
     {
         if (collision.gameObject.tag == "bullet")
         {
+            transform.eulerAngles = new Vector3(0, 0, -1 * 20f);
+            Invoke("nuckback", 0.1f);
             transform.position += new Vector3(0.3f, 0, 0);
 
             UnityEngine.Camera.main.GetComponent<Camera>().Shaking();
@@ -69,5 +71,9 @@ public class enemy4 : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    void nuckback()
+    {
+        transform.eulerAngles = new Vector3(0, 0, 0f);
     }
 }
