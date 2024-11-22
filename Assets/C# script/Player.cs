@@ -188,6 +188,7 @@ public class Player : MonoBehaviour
         {
             BulletConunt = 10;
             reload.GetComponent<Gun>().BulletReload();
+            bulletUI.GetComponent<BulletUI>().BulletReload();
         }
         
     }
@@ -220,7 +221,7 @@ public class Player : MonoBehaviour
             transform.position += Vector3.left * 0.3f;
             shoot.GetComponent<Shoot>().Shooting();
             shake.GetComponent<Camera>().Shaking();
-            reload.GetComponent<Gun>().reloading();
+            //reload.GetComponent<Gun>().reloading();
             //bulletUI.GetComponent<BulletUI>().BulletCounting();
             GameObject Particle = Instantiate(ParticlePrefab_Bullet) as GameObject;
             Particle.transform.SetParent(this.transform, false);

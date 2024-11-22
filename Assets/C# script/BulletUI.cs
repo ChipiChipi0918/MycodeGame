@@ -15,11 +15,11 @@ public class BulletUI : MonoBehaviour
     {
         Debug.Log(player.BulletConunt);
         UpdateBulletUI();
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            player.BulletConunt = 0;
-            Invoke("EndReload", 0.499f);
-        }
+        
+    }
+    public void BulletReload()
+    {
+        Invoke("EndReload", 0.499f);
     }
     void EndReload()
     {
