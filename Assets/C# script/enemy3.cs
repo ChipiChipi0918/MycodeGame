@@ -17,6 +17,7 @@ public class enemy3 : MonoBehaviour
 
     public float nuckbackAngle = 20;
 
+    public int enemyXp = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,9 +30,14 @@ public class enemy3 : MonoBehaviour
     {
         if (enemyHP <= 0)
         {
-            GameObject Xp = Instantiate(XpPrefab);
-            Xp.transform.position = transform.position;
-            Xp.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 13);
+            for (int i = 0; i < enemyXp; i++)
+            {
+                Debug.Log(i);
+                GameObject Xp = Instantiate(XpPrefab, transform.position, transform.rotation);
+
+                Xp.GetComponent<Rigidbody2D>().AddForce(Vector2.up * Random.Range(8, 14));
+            }
+
             Destroy(gameObject);
 
         }

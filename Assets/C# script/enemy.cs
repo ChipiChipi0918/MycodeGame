@@ -13,13 +13,21 @@ public class enemy : MonoBehaviour
     public float nuckbackAngle = 20;
 
     public GameObject XpPrefab;
+
+    public int enemyXp = 1;
     void Update()
     {
         if (enemyHP <= 0)
         {
-            GameObject Xp = Instantiate(XpPrefab);
-            Xp.transform.position = transform.position;
-            Xp.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 13);
+            for (int i = 0; i < enemyXp; i++)
+            {
+                Debug.Log(i);
+                GameObject Xp = Instantiate(XpPrefab, transform.position, transform.rotation);
+
+                Xp.GetComponent<Rigidbody2D>().AddForce(Vector2.up * Random.Range(8, 14));
+            }
+
+
             Destroy(gameObject);
 
         }

@@ -17,7 +17,7 @@ public class LvUi : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log("PlayerÀÇ Lv °ª: " + player.Lv);
+        
         bulletCountText.text = "LV:" + player.Lv;
 
     }

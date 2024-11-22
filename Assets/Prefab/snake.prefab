@@ -196,5 +196,6 @@ MonoBehaviour:
   moveSpeed: 0
   XpPrefab: {fileID: 2589633698864868337, guid: a9041f9e544dc7742a416aede0597267, type: 3}
   enemyHP: 4
-  attactRate: 6.5
+  attactRate: 4
   nuckbackAngle: 10
+  enemyXp: 3

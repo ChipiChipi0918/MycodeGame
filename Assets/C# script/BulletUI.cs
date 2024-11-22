@@ -13,7 +13,7 @@ public class BulletUI : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(player.BulletConunt);
+        
         UpdateBulletUI();
         
     }

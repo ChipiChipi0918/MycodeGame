@@ -91,8 +91,7 @@ public class Player : MonoBehaviour
             maxXp++;
         }
 
-        Debug.Log(xp);
-        Debug.Log(Lv);
+        
         /*EXPSlider.value = Score;
         if (Score >= LevelCount) 
         {

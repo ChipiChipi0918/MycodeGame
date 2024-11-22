@@ -13,12 +13,14 @@ public class enemy4 : MonoBehaviour
 
     private Animator Anim;
 
-    public float attactRate = 6.5f;
+    public float attactRate = 4f;
     private Transform target;
-    private float timeAfterAttack;
+    private float timeAfterAttack = 0;
 
     public float nuckbackAngle = 20;
 
+    public int enemyXp = 3;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +33,14 @@ public class enemy4 : MonoBehaviour
     {
         if (enemyHP <= 0)
         {
-            GameObject Xp = Instantiate(XpPrefab);
-            Xp.transform.position = transform.position;
-            Xp.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 13);
+            for (int i = 0; i < enemyXp; i++)
+            {
+                
+                GameObject Xp = Instantiate(XpPrefab,transform.position,transform.rotation);
+                
+                Xp.GetComponent<Rigidbody2D>().AddForce(Vector2.up * Random.Range(8,14));
+            }
+            
             Destroy(gameObject);
 
         }
@@ -48,6 +55,7 @@ public class enemy4 : MonoBehaviour
             timeAfterAttack = 0f;
 
             Anim.SetBool("snakeisAttack", true);
+            Debug.Log("d");
         }
         else
         {
