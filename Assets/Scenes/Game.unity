@@ -1624,7 +1624,7 @@ MonoBehaviour:
   jumpForce: 15
   dashSpeed: 20
   dashDuration: 0.2
-  xp: 1
+  xp: 0
   Lv: 1
   maxXp: 5
   scaleX: 1
@@ -2301,8 +2301,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -791.7, y: -5.3}
-  m_SizeDelta: {x: 167.6319, y: 77.6994}
+  m_AnchoredPosition: {x: -646.96, y: 0.00001049}
+  m_SizeDelta: {x: 373.71, y: 77.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &891124874
 MonoBehaviour:
@@ -2317,7 +2317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletCountText: {fileID: 891124875}
-  bulletCount: 5
+  player: {fileID: 683595703}
 --- !u!114 &891124875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2345,7 +2345,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 100
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0

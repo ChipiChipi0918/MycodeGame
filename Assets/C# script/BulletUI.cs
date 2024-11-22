@@ -3,39 +3,47 @@ using UnityEngine.UI;
 
 public class BulletUI : MonoBehaviour
 {
-    public Text bulletCountText;   
-    public int bulletCount = 5;  
+    public Text bulletCountText;
+    public Player player;
 
     void Start()
     {
-        // 텍스트 없애기
-        UpdateBulletUI();
+        
     }
 
     private void Update()
     {
+        Debug.Log(player.BulletConunt);
         UpdateBulletUI();
         if (Input.GetKeyDown(KeyCode.R))
         {
-            bulletCount = 0;
+            player.BulletConunt = 0;
             Invoke("EndReload", 0.499f);
         }
     }
     void EndReload()
     {
-        bulletCount = 5;
+        player.BulletConunt = 5;
     }
     public void BulletCounting()
     {
-        if (bulletCount > 0)
+        if (player.BulletConunt > 0)
         {
-            bulletCount--;          
+            player.BulletConunt--;          
         }
         UpdateBulletUI();
     }
     public void UpdateBulletUI()
     {
-        bulletCountText.text = bulletCount + " / 5";
+        //bulletCountText.text = player.BulletConunt + " / 5";
+        if(player.BulletConunt == 10)
+        {
+            bulletCountText.text = "Reloding...";
+        }
+        else
+        {
+            bulletCountText.text = player.BulletConunt + " / 5";
+        }
     }
 
 }

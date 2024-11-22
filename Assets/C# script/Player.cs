@@ -78,10 +78,7 @@ public class Player : MonoBehaviour
         rb.gravityScale = 3f;
     }
 
-    public void ReloadingEnd()
-    {
-        BulletConunt = 5;
-    }
+    
     void Update()
     {
         EXPSlider.maxValue = maxXp;
@@ -187,11 +184,16 @@ public class Player : MonoBehaviour
     }
     private void Reload()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) || BulletConunt <= 0)
         {
-            BulletConunt = 0;
+            BulletConunt = 10;
             reload.GetComponent<Gun>().BulletReload();
         }
+        
+    }
+    public void ReloadingEnd()
+    {
+        BulletConunt = 5;
     }
     void GunCooltime()
     {
@@ -200,7 +202,7 @@ public class Player : MonoBehaviour
     }
     private void Bulletshoot()
     {
-        if (Input.GetKeyDown(KeyCode.K) && BulletConunt > 0 && shootingOk == true)             //Æò¼Ò²¨
+        if (Input.GetKeyDown(KeyCode.K) && BulletConunt > 0 && shootingOk == true && BulletConunt < 10)             //Æò¼Ò²¨
         {
 
 
@@ -219,7 +221,7 @@ public class Player : MonoBehaviour
             shoot.GetComponent<Shoot>().Shooting();
             shake.GetComponent<Camera>().Shaking();
             reload.GetComponent<Gun>().reloading();
-            bulletUI.GetComponent<BulletUI>().BulletCounting();
+            //bulletUI.GetComponent<BulletUI>().BulletCounting();
             GameObject Particle = Instantiate(ParticlePrefab_Bullet) as GameObject;
             Particle.transform.SetParent(this.transform, false);
 
