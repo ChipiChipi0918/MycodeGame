@@ -20,7 +20,8 @@ public class enemy4 : MonoBehaviour
     public float nuckbackAngle = 20;
 
     public int enemyXp = 3;
-    
+
+    public GameObject ParticlePrefab_EnemyDie;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,7 @@ public class enemy4 : MonoBehaviour
     {
         if (enemyHP <= 0)
         {
+            GameObject Particle = Instantiate(ParticlePrefab_EnemyDie, transform.position, transform.rotation);
             for (int i = 0; i < enemyXp; i++)
             {
                 
@@ -68,12 +70,12 @@ public class enemy4 : MonoBehaviour
         if (collision.gameObject.tag == "bullet")
         {
             transform.eulerAngles = new Vector3(0, 0, -1 * 20f);
-            Invoke("nuckback", 0.1f);
+            
             transform.position += new Vector3(0.3f, 0, 0);
 
             UnityEngine.Camera.main.GetComponent<Camera>().Shaking();
             enemyHP--;
-
+            Invoke("nuckback", 0.1f);
         }
         if (collision.gameObject.tag == "DeleteEnemy")
         {

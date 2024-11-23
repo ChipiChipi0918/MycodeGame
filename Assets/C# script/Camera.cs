@@ -57,13 +57,13 @@ public class Camera : MonoBehaviour
     {
 
 
-        if (player.transform.position.y >= -2.75f && usingShake == false)
+        if (player.transform.position.y >= -2.25f && usingShake == false)
         {
             Vector3 dir = player.transform.position - this.transform.position;
             Vector3 moveVector = new Vector3(dir.x * cameraSpeed * Time.deltaTime, dir.y * cameraSpeed * Time.deltaTime, 0.0f);
             this.transform.Translate(moveVector);
         }
-        else if(player.transform.position.y < -2.75f && usingShake == false)
+        else if(player.transform.position.y < -2.25f && usingShake == false)
         {
             Vector3 dir = player.transform.position - this.transform.position;
             Vector3 moveVector = new Vector3(dir.x * cameraSpeed * Time.deltaTime, 0.0f, 0.0f);

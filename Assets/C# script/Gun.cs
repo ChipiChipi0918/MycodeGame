@@ -11,26 +11,35 @@ public class Gun : MonoBehaviour
     public float currentRotation = 0f; 
 
     public GameObject shoot;
+
+    bool reloding = false;
     // Start is called before the first frame update
     void Start()
     {
         
     }
-    public void reloading()
+    public void Gunshoot()
     {
-        transform.eulerAngles = new Vector3(0, 0, 7.558f);
-        transform.localScale = new Vector3(2.58f, 2.81f, 2f);
-        StartCoroutine("BanDong");
+        if(reloding == false)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 7.558f);
+            transform.localScale = new Vector3(2.58f, 2.81f, 2f);
+            
+            Invoke("BanDong",0.16f);
+        }
+        
     }
-    IEnumerator BanDong()
+    void BanDong()
     {
-        yield return new WaitForSeconds(0.16f);
-        transform.eulerAngles = new Vector3(0, 0, 2.558f);
-        transform.localScale = new Vector3(2.8f, 2.8f, 2f);
-
+        
+            
+            transform.eulerAngles = new Vector3(0, 0, 2.558f);
+            transform.localScale = new Vector3(2.8f, 2.8f, 2f);
+        
     }
     public void BulletReload()
     {
+        reloding = true;
         reload = true;
         currentRotation = 0f;
 
@@ -41,13 +50,15 @@ public class Gun : MonoBehaviour
     {
         if (reload)
         {
-            
+            reloding = true;
+
             float rotationThisFrame = reloadSpeed * Time.deltaTime;
             currentRotation += rotationThisFrame;
 
             transform.Rotate(Vector3.forward * rotationThisFrame);
             if (currentRotation >= 360f)
             {
+                
                 reload = false;
                 transform.eulerAngles = new Vector3(0, 0, 2.558f);
                 

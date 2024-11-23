@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public float scaleX = 1f;
     public float scaleY = 1f;
 
-
+    private SpriteRenderer spr;
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isDashing;
@@ -50,16 +50,21 @@ public class Player : MonoBehaviour
 
     public GameObject dieUi;
 
+    public GameObject XpUi;
+
     public int BulletConunt = 5;
     
     public float slowFactor = 0.1f;
+
     
+
+    public Sprite Lee;
     void Start()
     {
         
         rb = GetComponent<Rigidbody2D>();
         
-
+        spr = GetComponent<SpriteRenderer>();
         
     }
 
@@ -90,7 +95,14 @@ public class Player : MonoBehaviour
             Lv++;
             maxXp++;
         }
+        //戚薄酔
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Debug.Log("せせせせせせせせせせ");
+            spr.sprite = Lee;
+        }
 
+        
         
         /*EXPSlider.value = Score;
         if (Score >= LevelCount) 
@@ -215,12 +227,12 @@ public class Player : MonoBehaviour
             rb.gravityScale = 2f;
             ReturnScale();
             Invoke("GunCooltime", 0.3f);
-            scaleX = 0.89f; scaleY = 1.02f;
+            scaleX = 0.84f; scaleY = 1.02f;
 
             transform.position += Vector3.left * 0.3f;
             shoot.GetComponent<Shoot>().Shooting();
             shake.GetComponent<Camera>().Shaking();
-            //reload.GetComponent<Gun>().reloading();
+            reload.GetComponent<Gun>().Gunshoot();
             //bulletUI.GetComponent<BulletUI>().BulletCounting();
             GameObject Particle = Instantiate(ParticlePrefab_Bullet) as GameObject;
             Particle.transform.SetParent(this.transform, false);
@@ -260,6 +272,8 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.tag == "xp")
         {
+            XpUi.GetComponent<xpUi>().GetXp();
+
             xp++;
         }
 

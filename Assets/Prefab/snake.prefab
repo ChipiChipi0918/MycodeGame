@@ -198,4 +198,5 @@ MonoBehaviour:
   enemyHP: 4
   attactRate: 4
   nuckbackAngle: 10
-  enemyXp: 3
+  enemyXp: 4
+  ParticlePrefab_EnemyDie: {fileID: 2447982515890263776, guid: b6e3219f55277004b97bd1a4d26fb65a, type: 3}

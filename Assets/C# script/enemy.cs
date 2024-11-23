@@ -15,13 +15,15 @@ public class enemy : MonoBehaviour
     public GameObject XpPrefab;
 
     public int enemyXp = 1;
+    public GameObject ParticlePrefab_EnemyDie;
     void Update()
     {
         if (enemyHP <= 0)
         {
+            GameObject Particle = Instantiate(ParticlePrefab_EnemyDie, transform.position, transform.rotation);
             for (int i = 0; i < enemyXp; i++)
             {
-                Debug.Log(i);
+                
                 GameObject Xp = Instantiate(XpPrefab, transform.position, transform.rotation);
 
                 Xp.GetComponent<Rigidbody2D>().AddForce(Vector2.up * Random.Range(8, 14));
@@ -56,12 +58,12 @@ public class enemy : MonoBehaviour
         if (collision.gameObject.tag == "bullet")
         {
             transform.eulerAngles = new Vector3(0, 0, -1*20f);
-            Invoke("nuckback",0.1f);
+            
             transform.position += new Vector3(1.5f, 0.05f, 0);
 
             UnityEngine.Camera.main.GetComponent<Camera>().Shaking();
             enemyHP--;
-            
+            Invoke("nuckback", 0.1f);
         }
         if (collision.gameObject.tag == "DeleteEnemy")
         {
