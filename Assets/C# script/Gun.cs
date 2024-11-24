@@ -13,10 +13,13 @@ public class Gun : MonoBehaviour
     public GameObject shoot;
 
     bool reloding = false;
+
+    
+    AudioSource myaudio;
     // Start is called before the first frame update
     void Start()
     {
-        
+        myaudio = this.GetComponent<AudioSource>();
     }
     public void Gunshoot()
     {
@@ -39,19 +42,23 @@ public class Gun : MonoBehaviour
     }
     public void BulletReload()
     {
+        myaudio.Play();
         reloding = true;
         reload = true;
         currentRotation = 0f;
 
-        Invoke("EndReload", 0.5f);
+        
+        Invoke("EndReload", 0.8f);
     }
     // Update is called once per frame
     public void Update()
     {
+
+
         if (reload)
         {
             reloding = true;
-
+            
             float rotationThisFrame = reloadSpeed * Time.deltaTime;
             currentRotation += rotationThisFrame;
 
@@ -67,6 +74,7 @@ public class Gun : MonoBehaviour
     }
     void EndReload()
     {
+        
         shoot.GetComponent<Player>().ReloadingEnd();
     }
 }

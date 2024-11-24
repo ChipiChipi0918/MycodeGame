@@ -23,7 +23,7 @@ public class BulletUI : MonoBehaviour
     }
     void EndReload()
     {
-        player.BulletConunt = 5;
+        player.BulletConunt = player.maxBullet;
     }
     public void BulletCounting()
     {
@@ -36,13 +36,13 @@ public class BulletUI : MonoBehaviour
     public void UpdateBulletUI()
     {
         //bulletCountText.text = player.BulletConunt + " / 5";
-        if(player.BulletConunt == 10)
+        if(player.BulletConunt == -1)
         {
             bulletCountText.text = "Reloding...";
         }
         else
         {
-            bulletCountText.text = player.BulletConunt + " / 5";
+            bulletCountText.text = player.BulletConunt + " / "+ player.maxBullet;
         }
     }
 

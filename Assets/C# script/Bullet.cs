@@ -25,10 +25,7 @@ public class Bullet : MonoBehaviour
     {
 
     }
-    void Destory()
-    {
-        Destroy(gameObject);
-    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
@@ -43,7 +40,7 @@ public class Bullet : MonoBehaviour
             Invoke("tag", 0.01f);
             rb.velocity = Vector2.zero;
 
-            Invoke("Destory", 0.32f);
+            Destroy(gameObject,0.32f);
         }
     }
     void tag()

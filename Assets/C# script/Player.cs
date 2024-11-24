@@ -9,10 +9,14 @@ using static UnityEngine.ParticleSystem;
 public class Player : MonoBehaviour
 {
 
+
+
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
     public float dashSpeed = 20f;
     public float dashDuration = 0.2f;
+    public float attackSpeed = 0.3f;
+    public int maxBullet = 5;
 
     public float xp = 0;
     public float Lv = 1;
@@ -26,7 +30,7 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private bool isDashing;
 
-    private bool shootingOk = true;
+    public bool shootingOk = true;
     public Slider EXPSlider;
 
     private float dashTime;
@@ -56,18 +60,66 @@ public class Player : MonoBehaviour
     
     public float slowFactor = 0.1f;
 
-    
+    private int chooseSound;
 
     public Sprite Lee;
+
+    public AudioClip[] arrAudio;
+
+    AudioSource myaudio;
+
+    public Button btn1,btn2,btn3,btn4;
+
     void Start()
     {
         
         rb = GetComponent<Rigidbody2D>();
         
         spr = GetComponent<SpriteRenderer>();
+
+        myaudio = this.GetComponent<AudioSource>();
+
+        btn1 = GameObject.Find("Attack").GetComponent<Button>();
+        btn1.onClick.AddListener(Attack);
+
+        btn2 = GameObject.Find("AttackSpeed").GetComponent<Button>();
+        btn2.onClick.AddListener(AttackSpeed);
+
+        btn3 = GameObject.Find("BulletUp").GetComponent<Button>();
+        btn3.onClick.AddListener(BulletUp);
+
+        btn4 = GameObject.Find("Speed").GetComponent<Button>();
+        btn4.onClick.AddListener(Speed);
+
+
+    }
+    public void Attack()
+    {
+        btn1.onClick.RemoveAllListeners();
+        Debug.Log("dedede");
         
     }
-
+    public void AttackSpeed()
+    {
+        btn2.onClick.RemoveAllListeners();
+        if (attackSpeed >= 0.16f)
+        {
+            attackSpeed -= 0.01f;
+        }
+       
+    }
+    public void BulletUp()
+    {
+        btn3.onClick.RemoveAllListeners();
+        maxBullet++;
+        
+    }
+    public void Speed()
+    {
+        btn4.onClick.RemoveAllListeners();
+        moveSpeed += 0.25f;
+        
+    }
     void ReturnScale()
     {
         StartCoroutine("PrintAfterWait");
@@ -102,8 +154,16 @@ public class Player : MonoBehaviour
             spr.sprite = Lee;
         }
 
-        
-        
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Time.timeScale = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Time.timeScale = 1;
+        }
+
         /*EXPSlider.value = Score;
         if (Score >= LevelCount) 
         {
@@ -172,6 +232,7 @@ public class Player : MonoBehaviour
 
     private void StartDash()
     {
+        rb.velocity = Vector2.zero;
         isDashing = true;
 
         dashTime = dashDuration;
@@ -181,7 +242,7 @@ public class Player : MonoBehaviour
     private void Dash()
     {
         scaleX = 1.15f; scaleY = 0.85f;
-
+        rb.velocity = Vector2.zero;
 
         ReturnScale();
 
@@ -197,7 +258,8 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R) || BulletConunt <= 0)
         {
-            BulletConunt = 10;
+
+            BulletConunt = -1; //블렛 카운트 -1일때는 리로딩 상황
             reload.GetComponent<Gun>().BulletReload();
             bulletUI.GetComponent<BulletUI>().BulletReload();
         }
@@ -205,7 +267,7 @@ public class Player : MonoBehaviour
     }
     public void ReloadingEnd()
     {
-        BulletConunt = 5;
+        BulletConunt = maxBullet;
     }
     void GunCooltime()
     {
@@ -214,9 +276,11 @@ public class Player : MonoBehaviour
     }
     private void Bulletshoot()
     {
-        if (Input.GetKeyDown(KeyCode.K) && BulletConunt > 0 && shootingOk == true && BulletConunt < 10)             //평소꺼
+        if (Input.GetKeyDown(KeyCode.K) && BulletConunt > 0 && shootingOk == true && BulletConunt > -1)             //평소꺼
         {
-
+            
+            AudioClip audio = arrAudio[0];
+            myaudio.Play();
 
             shootingOk = false;
 
@@ -226,7 +290,7 @@ public class Player : MonoBehaviour
 
             rb.gravityScale = 2f;
             ReturnScale();
-            Invoke("GunCooltime", 0.3f);
+            Invoke("GunCooltime", attackSpeed);
             scaleX = 0.84f; scaleY = 1.02f;
 
             transform.position += Vector3.left * 0.3f;
