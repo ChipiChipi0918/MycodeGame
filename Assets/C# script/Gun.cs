@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class Gun : MonoBehaviour
 {
 
-    public float reloadSpeed = 1000f;
+    public float reloadSpeed = 800f;
     public bool reload = false;
     public float currentRotation = 0f; 
 
@@ -48,7 +48,7 @@ public class Gun : MonoBehaviour
         currentRotation = 0f;
 
         
-        Invoke("EndReload", 0.8f);
+        Invoke("EndReload", 0.5f);
     }
     // Update is called once per frame
     public void Update()
@@ -57,13 +57,14 @@ public class Gun : MonoBehaviour
 
         if (reload)
         {
+            
             reloding = true;
             
             float rotationThisFrame = reloadSpeed * Time.deltaTime;
             currentRotation += rotationThisFrame;
 
             transform.Rotate(Vector3.forward * rotationThisFrame);
-            if (currentRotation >= 360f)
+            if (currentRotation >= 180f)
             {
                 
                 reload = false;
@@ -74,7 +75,8 @@ public class Gun : MonoBehaviour
     }
     void EndReload()
     {
-        
+        reload = false;
+        transform.eulerAngles = new Vector3(0, 0, 2.558f);
         shoot.GetComponent<Player>().ReloadingEnd();
     }
 }

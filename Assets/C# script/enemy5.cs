@@ -82,6 +82,7 @@ public class enemy5 : MonoBehaviour
             enemyHP--;
             Invoke("nuckback", 0.1f);
         }
+
         if (collision.gameObject.tag == "DeleteEnemy")
         {
             Destroy(gameObject);

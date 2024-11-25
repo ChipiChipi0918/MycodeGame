@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public float jumpForce = 10f;
     public float dashSpeed = 20f;
     public float dashDuration = 0.2f;
-    public float attackSpeed = 0.3f;
+    public float attackSpeed = 0.6f;
     public int maxBullet = 5;
 
     public float xp = 0;
@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
     public GameObject dieUi;
 
     public GameObject XpUi;
+    public GameObject lvBoxUi;
 
     public int BulletConunt = 5;
     
@@ -95,30 +96,31 @@ public class Player : MonoBehaviour
     }
     public void Attack()
     {
-        btn1.onClick.RemoveAllListeners();
+        //btn1.onClick.RemoveAllListeners();
         Debug.Log("dedede");
         
     }
     public void AttackSpeed()
     {
-        btn2.onClick.RemoveAllListeners();
+        //btn2.onClick.RemoveAllListeners();
         if (attackSpeed >= 0.16f)
         {
-            attackSpeed -= 0.01f;
+            attackSpeed -= 0.04f;
         }
        
     }
     public void BulletUp()
     {
-        btn3.onClick.RemoveAllListeners();
+        //btn3.onClick.RemoveAllListeners();
         maxBullet++;
         
     }
     public void Speed()
     {
-        btn4.onClick.RemoveAllListeners();
-        moveSpeed += 0.25f;
-        
+        //btn4.onClick.RemoveAllListeners();
+        moveSpeed += 0.35f;
+        jumpForce += 0.03f;
+        jumpForce += 0.05f;
     }
     void ReturnScale()
     {
@@ -141,8 +143,11 @@ public class Player : MonoBehaviour
         EXPSlider.maxValue = maxXp;
         EXPSlider.value = xp;
 
+        
+
         if (maxXp <= xp)
         {
+            lvBoxUi.GetComponent<LvBoxUi>().LvUp();
             xp = 0;
             Lv++;
             maxXp++;
@@ -154,6 +159,7 @@ public class Player : MonoBehaviour
             spr.sprite = Lee;
         }
 
+        
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -352,8 +358,6 @@ public class Player : MonoBehaviour
         {
             bk2.GetComponent<BG2>().EnterBk2();
         }
-
-
     }
     void Die()
     {
@@ -367,11 +371,7 @@ public class Player : MonoBehaviour
         //transform.localScale = new Vector3(0.001f, 0.001f, -1f);
         scaleX = 0.001f;
         scaleY = 0.001f;
-        Invoke("Destory", 0.25f);
+        Destroy(gameObject,0.25f);
     }
 
-    void Destory()
-    {
-        Destroy(gameObject);
-    }
 }
