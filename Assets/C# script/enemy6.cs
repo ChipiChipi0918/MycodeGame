@@ -1,21 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.BoolParameter;
 
-public class enemy3 : MonoBehaviour
+public class enemy6 : MonoBehaviour
 {
-    public float moveSpeed = 1f;
+    public float moveSpeed = 5f;
     private Rigidbody2D rb;
 
     public GameObject XpPrefab;
-    public float enemyHP = 3;
+    public float enemyHP = 5;
 
-    public GameObject bulletPrefab;
-    public float attactRate = 2f;
-    private Transform target;
-    private float timeAfterAttack;
-
-    public float nuckbackAngle = 20;
+    public float rotationSpeed = 50f;
 
     public int enemyXp = 3;
     public GameObject ParticlePrefab_EnemyDie;
@@ -24,7 +20,6 @@ public class enemy3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeAfterAttack = 0f;
         player = GameObject.Find("Player").GetComponent<Player>();
     }
 
@@ -35,6 +30,7 @@ public class enemy3 : MonoBehaviour
         if (enemyHP <= 0)
         {
             GameObject Particle = Instantiate(ParticlePrefab_EnemyDie, transform.position, transform.rotation);
+
             for (int i = 0; i < enemyXp; i++)
             {
 
@@ -42,24 +38,15 @@ public class enemy3 : MonoBehaviour
 
                 Xp.GetComponent<Rigidbody2D>().AddForce(Vector2.up * Random.Range(8, 14));
             }
-
             Destroy(gameObject);
 
         }
 
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
 
-
-        timeAfterAttack += Time.deltaTime;
-
-        if (timeAfterAttack >= attactRate)
-        { 
-            timeAfterAttack = 0f;
-
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-
-        }
-
+        Vector3 rotation = transform.eulerAngles;
+        rotation.z += rotationSpeed * Time.deltaTime;
+        transform.eulerAngles = rotation;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -67,20 +54,15 @@ public class enemy3 : MonoBehaviour
         if (collision.gameObject.tag == "bullet")
         {
             transform.eulerAngles = new Vector3(0, 0, -1 * 20f);
-            
-            transform.position += new Vector3(0.3f, 0, 0);
-
             UnityEngine.Camera.main.GetComponent<Camera>().Shaking();
             enemyHP -= player.damage;
-            Invoke("nuckback", 0.1f);
+            
         }
         if (collision.gameObject.tag == "DeleteEnemy")
         {
             Destroy(gameObject);
         }
+
     }
-    void nuckback()
-    {
-        transform.eulerAngles = new Vector3(0, 0, 0f);
-    }
+    
 }

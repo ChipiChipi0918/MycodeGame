@@ -43,6 +43,7 @@ public class Spawn : MonoBehaviour
         StartCoroutine(RandomRespawn_Coroutine3());
         StartCoroutine(RandomRespawn_Coroutine4());
         StartCoroutine(RandomRespawn_Coroutine5());
+        StartCoroutine(RandomRespawn_Coroutine6());
     }
 
     IEnumerator RandomRespawn_Coroutine1()
@@ -99,6 +100,17 @@ public class Spawn : MonoBehaviour
 
             // 생성 위치 부분에 위에서 만든 함수 Return_RandomPosition() 함수 대입
             GameObject instantCapsul = Instantiate(enemies[4].enemyObj, Return_RandomPosition(), Quaternion.identity);
+        }
+
+    }
+    IEnumerator RandomRespawn_Coroutine6()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(enemies[5].enemyspawntime);
+
+            // 생성 위치 부분에 위에서 만든 함수 Return_RandomPosition() 함수 대입
+            GameObject instantCapsul = Instantiate(enemies[5].enemyObj, Return_RandomPosition(), Quaternion.identity);
         }
 
     }

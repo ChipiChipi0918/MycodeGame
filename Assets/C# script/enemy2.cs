@@ -8,16 +8,18 @@ public class enemy2 : MonoBehaviour
     private Rigidbody2D rb;
 
     public GameObject XpPrefab;
-    public int enemyHP = 3;
+    public float enemyHP = 3;
 
     public float nuckbackAngle = 20;
 
     public int enemyXp = 2;
     public GameObject ParticlePrefab_EnemyDie;
+
+    public Player player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -53,7 +55,7 @@ public class enemy2 : MonoBehaviour
             transform.position += new Vector3(3f, 0, 0);
 
             UnityEngine.Camera.main.GetComponent<Camera>().Shaking();
-            enemyHP--;
+            enemyHP -= player.damage;
             Invoke("nuckback", 0.1f);
         }
         if(collision.gameObject.tag == "DeleteEnemy")

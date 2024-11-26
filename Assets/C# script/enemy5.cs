@@ -9,7 +9,7 @@ public class enemy5 : MonoBehaviour
     private Rigidbody2D rb;
 
     public GameObject XpPrefab;
-    public int enemyHP = 3;
+    public float enemyHP = 3;
 
     public float nuckbackAngle = 20;
 
@@ -19,12 +19,13 @@ public class enemy5 : MonoBehaviour
     [SerializeField]
     private float chaseSpeed = 10f;
 
-    
+    public Player player;
     private Vector2 direction;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player").GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         Detect();
     }
@@ -79,7 +80,7 @@ public class enemy5 : MonoBehaviour
             transform.position += new Vector3(3f, 0, 0);
 
             UnityEngine.Camera.main.GetComponent<Camera>().Shaking();
-            enemyHP--;
+            enemyHP -= player.damage;
             Invoke("nuckback", 0.1f);
         }
 

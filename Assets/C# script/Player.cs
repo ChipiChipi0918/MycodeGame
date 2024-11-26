@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public float dashDuration = 0.2f;
     public float attackSpeed = 0.6f;
     public int maxBullet = 5;
+    public float damage = 1;
 
     public float xp = 0;
     public float Lv = 1;
@@ -98,12 +99,12 @@ public class Player : MonoBehaviour
     {
         //btn1.onClick.RemoveAllListeners();
         Debug.Log("dedede");
-        
+        damage += 0.4f;
     }
     public void AttackSpeed()
     {
         //btn2.onClick.RemoveAllListeners();
-        if (attackSpeed >= 0.16f)
+        if (attackSpeed >= 0.2f)
         {
             attackSpeed -= 0.04f;
         }

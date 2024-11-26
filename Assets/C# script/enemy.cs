@@ -8,7 +8,7 @@ public class enemy : MonoBehaviour
     private Rigidbody2D rb;
     public float jumpForce = 10f;
     private bool isGrounded = true;
-    public int enemyHP = 3;
+    public float enemyHP = 3;
 
     public float nuckbackAngle = 20;
 
@@ -16,8 +16,19 @@ public class enemy : MonoBehaviour
 
     public int enemyXp = 1;
     public GameObject ParticlePrefab_EnemyDie;
+
+    public Player player;
+
+    //public Player palyer;
+    private void Start()
+    {
+        
+        player = GameObject.Find("Player").GetComponent<Player>();
+        
+    }
     void Update()
     {
+        
         if (enemyHP <= 0)
         {
             GameObject Particle = Instantiate(ParticlePrefab_EnemyDie, transform.position, transform.rotation);
@@ -62,7 +73,7 @@ public class enemy : MonoBehaviour
             transform.position += new Vector3(1.5f, 0.05f, 0);
 
             UnityEngine.Camera.main.GetComponent<Camera>().Shaking();
-            enemyHP--;
+            enemyHP -= player.damage;
             Invoke("nuckback", 0.1f);
         }
         if (collision.gameObject.tag == "DeleteEnemy")
