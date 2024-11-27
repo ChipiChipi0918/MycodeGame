@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
     private bool isDashing;
 
     public bool shootingOk = true;
+    public bool isreloading = false;
+
     public Slider EXPSlider;
 
     private float dashTime;
@@ -58,6 +60,8 @@ public class Player : MonoBehaviour
     public GameObject XpUi;
     public GameObject lvBoxUi;
 
+    public GameObject result;
+
     public int BulletConunt = 5;
     
     public float slowFactor = 0.1f;
@@ -81,17 +85,17 @@ public class Player : MonoBehaviour
 
         myaudio = this.GetComponent<AudioSource>();
 
-        btn1 = GameObject.Find("Attack").GetComponent<Button>();
-        btn1.onClick.AddListener(Attack);
+        //btn1 = GameObject.Find("Attack").GetComponent<Button>();
+        //btn1.onClick.AddListener(Attack);
 
-        btn2 = GameObject.Find("AttackSpeed").GetComponent<Button>();
-        btn2.onClick.AddListener(AttackSpeed);
+        //btn2 = GameObject.Find("AttackSpeed").GetComponent<Button>();
+        //btn2.onClick.AddListener(AttackSpeed);
 
-        btn3 = GameObject.Find("BulletUp").GetComponent<Button>();
-        btn3.onClick.AddListener(BulletUp);
+        //btn3 = GameObject.Find("BulletUp").GetComponent<Button>();
+        //btn3.onClick.AddListener(BulletUp);
 
-        btn4 = GameObject.Find("Speed").GetComponent<Button>();
-        btn4.onClick.AddListener(Speed);
+        //btn4 = GameObject.Find("Speed").GetComponent<Button>();
+        //btn4.onClick.AddListener(Speed);
 
 
     }
@@ -104,7 +108,7 @@ public class Player : MonoBehaviour
     public void AttackSpeed()
     {
         //btn2.onClick.RemoveAllListeners();
-        if (attackSpeed >= 0.2f)
+        if (attackSpeed >= 0.16f)
         {
             attackSpeed -= 0.04f;
         }
@@ -114,14 +118,14 @@ public class Player : MonoBehaviour
     {
         //btn3.onClick.RemoveAllListeners();
         maxBullet++;
-        
+        BulletConunt = maxBullet;
     }
     public void Speed()
     {
         //btn4.onClick.RemoveAllListeners();
         moveSpeed += 0.35f;
-        jumpForce += 0.03f;
-        jumpForce += 0.05f;
+        jumpForce += 0.07f;
+        dashSpeed += 0.1f;
     }
     void ReturnScale()
     {
@@ -265,7 +269,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R) || BulletConunt <= 0)
         {
-
+            isreloading = true;
             BulletConunt = -1; //블렛 카운트 -1일때는 리로딩 상황
             reload.GetComponent<Gun>().BulletReload();
             bulletUI.GetComponent<BulletUI>().BulletReload();
@@ -275,22 +279,32 @@ public class Player : MonoBehaviour
     public void ReloadingEnd()
     {
         BulletConunt = maxBullet;
+        Invoke("d", 0.23f);
+        isreloading = true;
+    }
+    public void d()
+    {
+        isreloading = false;
     }
     void GunCooltime()
     {
+        
         shootingOk = true;
         laserT.GetComponent<laser>().ResetA();
+        
+        
     }
     private void Bulletshoot()
     {
-        if (Input.GetKeyDown(KeyCode.K) && BulletConunt > 0 && shootingOk == true && BulletConunt > -1)             //평소꺼
+        Debug.Log(isreloading);
+        if (Input.GetKeyDown(KeyCode.K) && BulletConunt > 0 && shootingOk == true && BulletConunt > -1 &&isreloading == false)             //평소꺼
         {
             
             AudioClip audio = arrAudio[0];
             myaudio.Play();
 
             shootingOk = false;
-
+            
             
            laserT.GetComponent<laser>().laserOff();
             
@@ -372,7 +386,11 @@ public class Player : MonoBehaviour
         //transform.localScale = new Vector3(0.001f, 0.001f, -1f);
         scaleX = 0.001f;
         scaleY = 0.001f;
+        Invoke("Result", 0.24f);
         Destroy(gameObject,0.25f);
     }
-
+    void Result()
+    {
+        result.GetComponent<TitleAndRetry>().here();
+    }
 }

@@ -48,7 +48,7 @@ public class Gun : MonoBehaviour
         currentRotation = 0f;
 
         
-        Invoke("EndReload", 0.5f);
+        Invoke("EndReload", 0.65f);
     }
     // Update is called once per frame
     public void Update()
