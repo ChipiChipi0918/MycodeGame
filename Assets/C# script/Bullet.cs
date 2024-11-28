@@ -10,9 +10,15 @@ public class Bullet : MonoBehaviour
     public GameObject ParticlePrefab_Bullet;
     private Rigidbody2D rb;
     public GameObject Trail;
+
+    AudioSource myaudio;
+
+    private bool Onesound = true;
     // Start is called before the first frame update
     void Start()
     {
+        myaudio = this.GetComponent<AudioSource>();
+
         gameObject.tag = "bullet";
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -30,6 +36,11 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            if (Onesound == true)
+            {
+                myaudio.Play();
+                Onesound = false;
+            }
             Color color = spriteRenderer.color;
             color.a = 0f;
             spriteRenderer.color = color;

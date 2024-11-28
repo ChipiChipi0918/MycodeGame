@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class DieUi : MonoBehaviour
 {
+    AudioSource myaudio;
+
     private CanvasGroup canvasGroup;
     public float fadeDuration = 1.0f;
     public float displayTime = 0.01f;
 
     void Start()
     {
+        myaudio = this.GetComponent<AudioSource>();
 
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup != null)
@@ -20,6 +23,8 @@ public class DieUi : MonoBehaviour
 
     public void Hert()
     {
+        
+        myaudio.Play();
         if (canvasGroup != null)
         {
             StopAllCoroutines();

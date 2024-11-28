@@ -5,11 +5,11 @@ using UnityEngine;
 public class Xp : MonoBehaviour
 {
     public GameObject targetPosition;
-    
+    AudioSource myaudio;
     // Start is called before the first frame update
     void Start()
     {
-        
+        myaudio = this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class Xp : MonoBehaviour
         }
         if (collision.gameObject.tag == "Player")
         {
-            
+            myaudio.Play();
             Destroy(gameObject);
         }
     }

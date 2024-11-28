@@ -152,6 +152,10 @@ public class Player : MonoBehaviour
 
         if (maxXp <= xp)
         {
+            myaudio.Stop();
+            myaudio.clip = arrAudio[2];
+            myaudio.Play();
+
             lvBoxUi.GetComponent<LvBoxUi>().LvUp();
             xp = 0;
             Lv++;
@@ -299,8 +303,8 @@ public class Player : MonoBehaviour
         Debug.Log(isreloading);
         if (Input.GetKeyDown(KeyCode.K) && BulletConunt > 0 && shootingOk == true && BulletConunt > -1 &&isreloading == false)             //Æò¼Ò²¨
         {
-            
-            AudioClip audio = arrAudio[0];
+            myaudio.Stop();
+            myaudio.clip = arrAudio[0];
             myaudio.Play();
 
             shootingOk = false;
@@ -358,7 +362,13 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "xp")
         {
             XpUi.GetComponent<xpUi>().GetXp();
-
+            if (xp < maxXp) 
+            {
+                myaudio.Stop();
+                myaudio.clip = arrAudio[1];
+                myaudio.Play();
+            }
+            
             xp++;
         }
 
@@ -376,6 +386,7 @@ public class Player : MonoBehaviour
     }
     void Die()
     {
+
         dieUi.GetComponent<DieUi>().Hert();
 
         GameObject Particle = Instantiate(ParticlePrefab_Die) as GameObject;
