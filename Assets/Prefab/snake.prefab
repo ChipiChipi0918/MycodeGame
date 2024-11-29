@@ -200,3 +200,5 @@ MonoBehaviour:
   nuckbackAngle: 10
   enemyXp: 4
   ParticlePrefab_EnemyDie: {fileID: 2447982515890263776, guid: b6e3219f55277004b97bd1a4d26fb65a, type: 3}
+  player: {fileID: 0}
+  bulletPrefab: {fileID: 3917483288843079453, guid: fa71759d9cde18d47857ff41a02790ff, type: 3}

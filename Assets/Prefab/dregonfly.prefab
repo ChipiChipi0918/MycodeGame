@@ -179,7 +179,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.26, y: 0.043}
+  m_Size: {x: 0.26, y: 0.08}
   m_EdgeRadius: 0
 --- !u!114 &4664142926192332273
 MonoBehaviour:
@@ -200,3 +200,4 @@ MonoBehaviour:
   enemyXp: 2
   ParticlePrefab_EnemyDie: {fileID: 2447982515890263776, guid: b6e3219f55277004b97bd1a4d26fb65a, type: 3}
   chaseSpeed: 5
+  player: {fileID: 0}

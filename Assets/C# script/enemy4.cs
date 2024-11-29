@@ -24,11 +24,14 @@ public class enemy4 : MonoBehaviour
     public GameObject ParticlePrefab_EnemyDie;
 
     public Player player;
+    public GameObject bulletPrefab;
     // Start is called before the first frame update
     void Start()
     {
         Anim = GetComponent<Animator>();
         player = GameObject.Find("Player").GetComponent<Player>();
+        timeAfterAttack = 0f;
+        
     }
 
     // Update is called once per frame
@@ -61,13 +64,18 @@ public class enemy4 : MonoBehaviour
 
             Anim.SetBool("snakeisAttack", true);
             Debug.Log("d");
+            Invoke("Attack", 0.4f);
+            
         }
         else
         {
             Anim.SetBool("snakeisAttack", false);
         }
     }
-
+    void Attack()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "bullet")

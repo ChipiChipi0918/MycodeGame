@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
 
     public Button btn1,btn2,btn3,btn4;
 
+    public bool automaticFire = false;
     void Start()
     {
         
@@ -108,9 +109,14 @@ public class Player : MonoBehaviour
     public void AttackSpeed()
     {
         //btn2.onClick.RemoveAllListeners();
-        if (attackSpeed >= 0.16f)
+        if (attackSpeed >= 0.1f)
         {
-            attackSpeed -= 0.04f;
+            attackSpeed -= 0.06f;
+            
+        }
+        else
+        {
+            attackSpeed = 0.08f;
         }
        
     }
@@ -283,7 +289,7 @@ public class Player : MonoBehaviour
     public void ReloadingEnd()
     {
         BulletConunt = maxBullet;
-        Invoke("d", 0.23f);
+        Invoke("d", 0.26f);
         isreloading = true;
     }
     public void d()
@@ -300,35 +306,40 @@ public class Player : MonoBehaviour
     }
     private void Bulletshoot()
     {
-        Debug.Log(isreloading);
-        if (Input.GetKeyDown(KeyCode.K) && BulletConunt > 0 && shootingOk == true && BulletConunt > -1 &&isreloading == false)             //Æò¼Ò²¨
+        /*if (attackSpeed <= 0.2f)
         {
-            myaudio.Stop();
-            myaudio.clip = arrAudio[0];
-            myaudio.Play();
+            automaticFire = true;
+        }*/
+        Debug.Log(isreloading);
+        if (Input.GetMouseButtonDown(0) && automaticFire == false)
+        {
+            if (BulletConunt > 0 && shootingOk == true && BulletConunt > -1 && isreloading == false)             //Æò¼Ò²¨
+            {
+                myaudio.Stop();
+                myaudio.clip = arrAudio[0];
+                myaudio.Play();
 
-            shootingOk = false;
-            
-            
-           laserT.GetComponent<laser>().laserOff();
-            
-
-            rb.gravityScale = 2f;
-            ReturnScale();
-            Invoke("GunCooltime", attackSpeed);
-            scaleX = 0.84f; scaleY = 1.02f;
-
-            transform.position += Vector3.left * 0.3f;
-            shoot.GetComponent<Shoot>().Shooting();
-            shake.GetComponent<Camera>().Shaking();
-            reload.GetComponent<Gun>().Gunshoot();
-            //bulletUI.GetComponent<BulletUI>().BulletCounting();
-            GameObject Particle = Instantiate(ParticlePrefab_Bullet) as GameObject;
-            Particle.transform.SetParent(this.transform, false);
-
-            BulletConunt--;
+                shootingOk = false;
 
 
+                laserT.GetComponent<laser>().laserOff();
+
+
+                rb.gravityScale = 2f;
+                ReturnScale();
+                Invoke("GunCooltime", attackSpeed);
+                scaleX = 0.84f; scaleY = 1.02f;
+
+                transform.position += Vector3.left * 0.3f;
+                shoot.GetComponent<Shoot>().Shooting();
+                shake.GetComponent<Camera>().Shaking();
+                reload.GetComponent<Gun>().Gunshoot();
+                //bulletUI.GetComponent<BulletUI>().BulletCounting();
+                GameObject Particle = Instantiate(ParticlePrefab_Bullet) as GameObject;
+                Particle.transform.SetParent(this.transform, false);
+
+                BulletConunt--;
+            }
         }
         if (BulletConunt <= 0)
         {
@@ -397,7 +408,7 @@ public class Player : MonoBehaviour
         //transform.localScale = new Vector3(0.001f, 0.001f, -1f);
         scaleX = 0.001f;
         scaleY = 0.001f;
-        Invoke("Result", 0.24f);
+        Invoke("Result", 0.245f);
         Destroy(gameObject,0.25f);
     }
     void Result()

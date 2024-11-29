@@ -29,9 +29,11 @@ public class TitleAndRetry : MonoBehaviour
     public void Title()
     {
         SceneManager.LoadScene("Title");
+        Time.timeScale = 1f;
     }
     public void Retry()
     {
         SceneManager.LoadScene("Game");
+        Time.timeScale = 1f;
     }
 }
