@@ -163,7 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
   XpPrefab: {fileID: 2589633698864868337, guid: a9041f9e544dc7742a416aede0597267, type: 3}
-  enemyHP: 5
+  enemyHP: 13
   rotationSpeed: 90
   enemyXp: 3
   ParticlePrefab_EnemyDie: {fileID: 2447982515890263776, guid: b6e3219f55277004b97bd1a4d26fb65a, type: 3}
+  player: {fileID: 0}

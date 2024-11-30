@@ -525,8 +525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ca0341f8471f749866f2eccd2bd429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  rotationSpeed: 65
+  moveSpeed: 2.1
+  rotationSpeed: 70
 --- !u!58 &112701453
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -625,8 +625,8 @@ Transform:
   m_GameObject: {fileID: 169229568}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.0811, y: 0.15, z: 10}
-  m_LocalScale: {x: 5.6447344, y: 6.129879, z: 1}
+  m_LocalPosition: {x: 14.41, y: 0.1951, z: 10}
+  m_LocalScale: {x: 6.768866, y: 6.389773, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 519420032}
@@ -650,13 +650,13 @@ MonoBehaviour:
   - enemyObj: {fileID: 6194422445574863272, guid: a5cddcc17933ec64ba526bdda97dea66, type: 3}
     enemyspawntime: 7
   - enemyObj: {fileID: 6337475638865348385, guid: 91039c2bf3be20e40af21a35735d9fdc, type: 3}
-    enemyspawntime: 9
+    enemyspawntime: 8.7
   - enemyObj: {fileID: 6375376473765202306, guid: b8bcde799d8e5e04ba4ae73cc50464dd, type: 3}
-    enemyspawntime: 12
+    enemyspawntime: 10
   - enemyObj: {fileID: 4176269685032760543, guid: a1a276b0aa4e47449a68d3ab3024569b, type: 3}
-    enemyspawntime: 9
+    enemyspawntime: 8.3
   - enemyObj: {fileID: 1024044967806611182, guid: 0e91eeeffa6f63e45b9f61c1a4313b93, type: 3}
-    enemyspawntime: 14
+    enemyspawntime: 11
 --- !u!61 &169229571
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2178,7 +2178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de86b8f13b212941a97861e1d8d2973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 683595703}
 --- !u!1 &683595700
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,7 +2286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6.6
   jumpForce: 16.5
-  dashSpeed: 36.5
+  dashSpeed: 37
   dashDuration: 0.1
   attackSpeed: 0.6
   maxBullet: 5
@@ -2315,6 +2314,7 @@ MonoBehaviour:
   XpUi: {fileID: 1940960950}
   lvBoxUi: {fileID: 1016748509}
   result: {fileID: 741136133}
+  dashCool: 0.17
   BulletConunt: 5
   slowFactor: 0.15
   Lee: {fileID: 21300000, guid: 5e41c977be3df3e49937bb93167e6227, type: 3}
@@ -3049,7 +3049,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de86b8f13b212941a97861e1d8d2973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 683595703}
 --- !u!1 &768075572
 GameObject:
   m_ObjectHideFlags: 0
@@ -3212,7 +3211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de86b8f13b212941a97861e1d8d2973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 683595703}
 --- !u!1 &771155134
 GameObject:
   m_ObjectHideFlags: 0
@@ -10815,7 +10813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de86b8f13b212941a97861e1d8d2973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 683595703}
 --- !u!1 &1476180009
 GameObject:
   m_ObjectHideFlags: 0

@@ -194,12 +194,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5d6c90b5741a542b3e590305bd04ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 12
+  moveSpeed: 12.5
   XpPrefab: {fileID: 2589633698864868337, guid: a9041f9e544dc7742a416aede0597267, type: 3}
-  enemyHP: 1
+  enemyHP: 1.5
   nuckbackAngle: 10
   enemyXp: 1
   ParticlePrefab_EnemyDie: {fileID: 2447982515890263776, guid: b6e3219f55277004b97bd1a4d26fb65a, type: 3}
+  player: {fileID: 0}
 --- !u!1 &8280707056423211751
 GameObject:
   m_ObjectHideFlags: 0

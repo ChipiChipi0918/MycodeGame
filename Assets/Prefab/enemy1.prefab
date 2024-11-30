@@ -152,7 +152,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.083, y: 0.2}
+  m_Size: {x: 0.1, y: 0.2}
   m_EdgeRadius: 0
 --- !u!50 &3669729507756688468
 Rigidbody2D:
@@ -195,8 +195,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   jumpForce: 11
-  enemyHP: 3
+  enemyHP: 3.3
   nuckbackAngle: 10
   XpPrefab: {fileID: 2589633698864868337, guid: a9041f9e544dc7742a416aede0597267, type: 3}
-  enemyXp: 1
+  enemyXp: 2
   ParticlePrefab_EnemyDie: {fileID: 2447982515890263776, guid: b6e3219f55277004b97bd1a4d26fb65a, type: 3}
+  player: {fileID: 0}

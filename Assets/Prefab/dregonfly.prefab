@@ -195,9 +195,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2.6
   XpPrefab: {fileID: 2589633698864868337, guid: a9041f9e544dc7742a416aede0597267, type: 3}
-  enemyHP: 2
+  enemyHP: 2.5
   nuckbackAngle: 5
   enemyXp: 2
   ParticlePrefab_EnemyDie: {fileID: 2447982515890263776, guid: b6e3219f55277004b97bd1a4d26fb65a, type: 3}
-  chaseSpeed: 5
+  chaseSpeed: 6
   player: {fileID: 0}

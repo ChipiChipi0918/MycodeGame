@@ -47,14 +47,5 @@ public class SnakeBullet : MonoBehaviour
         }
 
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "bullet")
-        {
-            GameObject Particle = Instantiate(ParticlePrefab_Bullet, transform.position, transform.rotation);
-            rb.velocity = Vector2.zero;
-            Destroy(gameObject, 0.12f);
 
-        }
-    }
 }

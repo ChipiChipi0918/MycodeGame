@@ -64,6 +64,8 @@ public class Player : MonoBehaviour
 
     public GameObject result;
 
+    public float dashCool = 0.2f;
+    private bool dashOk = true;
 
     public int BulletConunt = 5;
     
@@ -109,21 +111,21 @@ public class Player : MonoBehaviour
     {
         //btn1.onClick.RemoveAllListeners();
         Debug.Log("dedede");
-        damage += 0.4f;
+        damage += 0.5f;
         UpgradeChance--;
     }
     public void AttackSpeed()
     {
         //btn2.onClick.RemoveAllListeners();
-        if (attackSpeed >= 0.1f)
+        if (attackSpeed > 0.1f)
         {
-            attackSpeed -= 0.06f;
+            attackSpeed -= 0.1f;
             
         }
-        else
-        {
-            attackSpeed = 0.08f;
-        }
+        //else
+        //{
+        //    attackSpeed = 0.1f;
+        //}
         UpgradeChance--;
     }
     public void BulletUp()
@@ -136,9 +138,9 @@ public class Player : MonoBehaviour
     public void Speed()
     {
         //btn4.onClick.RemoveAllListeners();
-        moveSpeed += 0.35f;
-        jumpForce += 0.07f;
-        dashSpeed += 0.1f;
+        moveSpeed += 0.5f;
+        jumpForce += 0.09f;
+        dashSpeed += 0.2f;
         UpgradeChance--;
     }
     void ReturnScale()
@@ -159,6 +161,10 @@ public class Player : MonoBehaviour
     
     void Update()
     {
+        if(attackSpeed <= 0.1f)
+        {
+            attackSpeed = 0.1f;
+        }
         EXPSlider.maxValue = maxXp;
         EXPSlider.value = xp;
 
@@ -199,14 +205,14 @@ public class Player : MonoBehaviour
 
         
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        /*if (Input.GetKeyDown(KeyCode.Q))
         {
             Time.timeScale = 0;
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             Time.timeScale = 1;
-        }
+        }*/
 
         /*EXPSlider.value = Score;
         if (Score >= LevelCount) 
@@ -238,18 +244,25 @@ public class Player : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && dashOk == true)
         {
+            dashOk = false;
             StartDash();
-        }
+            Invoke("DashCool",dashCool);
 
+            Debug.Log(dashOk);
+        }
+        
 
         if (isDashing)
         {
             Dash();
         }
     }
-
+    void DashCool()
+    {
+        dashOk = true;
+    }
     void FixedUpdate()
     {
         if (!isDashing)
