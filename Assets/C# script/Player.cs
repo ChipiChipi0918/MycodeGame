@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public float xp = 0;
     public float Lv = 1;
     public float maxXp = 5;
+    public int UpgradeChance = 1;
 
     public float scaleX = 1f;
     public float scaleY = 1f;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
     public bool isreloading = false;
 
     public Slider EXPSlider;
+    public Slider MeterSlider;
 
     private float dashTime;
     private Vector2 moveDirection;
@@ -62,6 +64,7 @@ public class Player : MonoBehaviour
 
     public GameObject result;
 
+
     public int BulletConunt = 5;
     
     public float slowFactor = 0.1f;
@@ -77,6 +80,8 @@ public class Player : MonoBehaviour
     public Button btn1,btn2,btn3,btn4;
 
     public bool automaticFire = false;
+
+
     void Start()
     {
         
@@ -105,6 +110,7 @@ public class Player : MonoBehaviour
         //btn1.onClick.RemoveAllListeners();
         Debug.Log("dedede");
         damage += 0.4f;
+        UpgradeChance--;
     }
     public void AttackSpeed()
     {
@@ -118,13 +124,14 @@ public class Player : MonoBehaviour
         {
             attackSpeed = 0.08f;
         }
-       
+        UpgradeChance--;
     }
     public void BulletUp()
     {
         //btn3.onClick.RemoveAllListeners();
         maxBullet++;
         BulletConunt = maxBullet;
+        UpgradeChance--;
     }
     public void Speed()
     {
@@ -132,6 +139,7 @@ public class Player : MonoBehaviour
         moveSpeed += 0.35f;
         jumpForce += 0.07f;
         dashSpeed += 0.1f;
+        UpgradeChance--;
     }
     void ReturnScale()
     {
@@ -154,8 +162,22 @@ public class Player : MonoBehaviour
         EXPSlider.maxValue = maxXp;
         EXPSlider.value = xp;
 
-        
-
+        MeterSlider.maxValue = 200;
+        MeterSlider.value = transform.position.x;
+        if (UpgradeChance > 0)
+        {
+            btn1.gameObject.SetActive(true);
+            btn2.gameObject.SetActive(true);
+            btn3.gameObject.SetActive(true);
+            btn4.gameObject.SetActive(true);
+        }
+        else
+        {
+            btn1.gameObject.SetActive(false);
+            btn2.gameObject.SetActive(false);
+            btn3.gameObject.SetActive(false);
+            btn4.gameObject.SetActive(false);
+        }
         if (maxXp <= xp)
         {
             myaudio.Stop();
@@ -164,6 +186,7 @@ public class Player : MonoBehaviour
 
             lvBoxUi.GetComponent<LvBoxUi>().LvUp();
             xp = 0;
+            UpgradeChance++;
             Lv++;
             maxXp++;
         }
@@ -310,7 +333,7 @@ public class Player : MonoBehaviour
         {
             automaticFire = true;
         }*/
-        Debug.Log(isreloading);
+        
         if (Input.GetMouseButtonDown(0) && automaticFire == false)
         {
             if (BulletConunt > 0 && shootingOk == true && BulletConunt > -1 && isreloading == false)             //Æò¼Ò²¨

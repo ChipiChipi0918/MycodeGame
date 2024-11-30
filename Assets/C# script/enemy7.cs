@@ -15,7 +15,7 @@ public class enemy7 : MonoBehaviour
 
     public int enemyXp = 3;
     public GameObject ParticlePrefab_EnemyDie;
-
+    public GameObject wolfDash;
     public Player player;
 
     private Animator Anim;
@@ -24,6 +24,8 @@ public class enemy7 : MonoBehaviour
     public float attactRate = 4f;
 
     public bool isAttack = false;
+
+    public GameObject shake;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,8 +59,9 @@ public class enemy7 : MonoBehaviour
         if (timeAfterAttack >= attactRate)
         {
             timeAfterAttack = 0f;
+            
             isAttack = true;
-            Invoke("dd", 0.1f);
+            Invoke("dd", 0.7f);
             Anim.SetBool("IsAttack", true);
             Debug.Log("d");
             
@@ -71,6 +74,8 @@ public class enemy7 : MonoBehaviour
     }
     void dd()
     {
+        GameObject Particle = Instantiate(wolfDash, transform.position, transform.rotation);
+        shake.GetComponent<Camera>().Shaking();
         transform.position += new Vector3(-5f, 0, 0);
         isAttack = false;
     }

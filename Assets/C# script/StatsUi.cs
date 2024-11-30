@@ -18,10 +18,12 @@ public class StatsUi : MonoBehaviour
     private void Update()
     {
 
-        StatsText.text = "Attack Damage:" + player.damage
-                        +"\nAttack Speed:" + player.attackSpeed
-                        +"\nMax Bullet:" + player.maxBullet
-                        +"\nMove Speed:" + player.moveSpeed;
+        StatsText.text ="LV: " + player.Lv
+                        +"\nAttack Damage: " + player.damage
+                        +"\nAttack Speed: " + player.attackSpeed
+                        +"\nMax Bullet: " + player.maxBullet
+                        +"\nMove Speed: " + player.moveSpeed
+                        +"\nUpgrade: " + player.UpgradeChance;
     }
     
 
