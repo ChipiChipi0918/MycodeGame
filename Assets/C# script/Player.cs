@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
 
     public bool automaticFire = false;
 
-
+    public float resultplayerpos;
     void Start()
     {
         
@@ -161,6 +161,10 @@ public class Player : MonoBehaviour
     
     void Update()
     {
+        if(transform.position.x >= 200)
+        {
+            shake.GetComponent<Bgm>().BossSound();
+        }
         if(attackSpeed <= 0.1f)
         {
             attackSpeed = 0.1f;
@@ -197,7 +201,7 @@ public class Player : MonoBehaviour
             maxXp++;
         }
         //戚薄酔
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             Debug.Log("せせせせせせせせせせ");
             spr.sprite = Lee;
@@ -449,6 +453,8 @@ public class Player : MonoBehaviour
     }
     void Result()
     {
+        
+        resultplayerpos = Mathf.Floor(transform.position.x);
         result.GetComponent<TitleAndRetry>().here();
     }
 }
