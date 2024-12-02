@@ -2344,6 +2344,11 @@ MonoBehaviour:
   btn3: {fileID: 768075575}
   btn4: {fileID: 619845166}
   automaticFire: 0
+  resultplayerpos: 0
+  attackLv: 1
+  attackSpeedLv: 1
+  bulletLv: 1
+  speedLv: 1
 --- !u!50 &683595704
 Rigidbody2D:
   serializedVersion: 4
@@ -3377,14 +3382,14 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'LV:
 
-    Attack Damage:
+    Attack Lv:
 
-    Attack Speed:
+    Attack Speed Lv:
 
-    Max Bullet:
+    Max Bullet Lv:
 
     Move
-    Speed:
+    Speed Lv:
 
     Upgrade:'
 --- !u!222 &775509615
@@ -10920,14 +10925,14 @@ MonoBehaviour:
 
     LV:
 
-    Attack Damage:
+    Attack Lv:
 
-    Attack Speed:
+    Attack Speed Lv:
 
-    Max Bullet:
+    Max Bullet Lv:
 
     Move
-    Speed:'
+    Speed Lv:'
 --- !u!222 &1476180013
 CanvasRenderer:
   m_ObjectHideFlags: 0

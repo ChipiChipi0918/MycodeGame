@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public int maxBullet = 5;
     public float damage = 1;
 
+    private bool slowTimeDie = false;
+
     public float xp = 0;
     public float Lv = 1;
     public float maxXp = 5;
@@ -84,6 +86,8 @@ public class Player : MonoBehaviour
     public bool automaticFire = false;
 
     public float resultplayerpos;
+
+    public int attackLv=1,attackSpeedLv=1,bulletLv=1,speedLv=1;
     void Start()
     {
         
@@ -110,38 +114,53 @@ public class Player : MonoBehaviour
     public void Attack()
     {
         //btn1.onClick.RemoveAllListeners();
-        Debug.Log("dedede");
-        damage += 0.5f;
-        UpgradeChance--;
+
+        if (attackLv <= 7)
+        {
+            damage += 0.5f;
+            UpgradeChance--;
+            attackLv++;
+        }
     }
     public void AttackSpeed()
     {
         //btn2.onClick.RemoveAllListeners();
-        if (attackSpeed > 0.1f)
+        if (attackSpeedLv <= 5)
         {
             attackSpeed -= 0.1f;
-            
+            attackSpeedLv++;
+            UpgradeChance--;
         }
         //else
         //{
         //    attackSpeed = 0.1f;
         //}
-        UpgradeChance--;
+
     }
     public void BulletUp()
     {
         //btn3.onClick.RemoveAllListeners();
-        maxBullet++;
-        BulletConunt = maxBullet;
-        UpgradeChance--;
+        if(bulletLv <= 5)
+        {
+            maxBullet++;
+            BulletConunt = maxBullet;
+            UpgradeChance--;
+            bulletLv++;
+        }
+
     }
     public void Speed()
     {
+        if(speedLv <= 6)
+        {
+            moveSpeed += 0.5f;
+            jumpForce += 0.09f;
+            dashSpeed += 0.2f;
+            UpgradeChance--;
+            speedLv++;
+        }
         //btn4.onClick.RemoveAllListeners();
-        moveSpeed += 0.5f;
-        jumpForce += 0.09f;
-        dashSpeed += 0.2f;
-        UpgradeChance--;
+
     }
     void ReturnScale()
     {
@@ -437,23 +456,27 @@ public class Player : MonoBehaviour
     }
     void Die()
     {
+        if (slowTimeDie == false)
+        {
+            slowTimeDie = true;
+            dieUi.GetComponent<DieUi>().Hert();
 
-        dieUi.GetComponent<DieUi>().Hert();
+            GameObject Particle = Instantiate(ParticlePrefab_Die) as GameObject;
+            Particle.transform.SetParent(this.transform, false);
+            shake.GetComponent<Camera>().superShaking();
+            Time.timeScale = 1f;
 
-        GameObject Particle = Instantiate(ParticlePrefab_Die) as GameObject;
-        Particle.transform.SetParent(this.transform, false);
-        shake.GetComponent<Camera>().superShaking();
-        Time.timeScale = 1f;
+            //transform.localScale = new Vector3(0.001f, 0.001f, -1f);
+            scaleX = 0.001f;
+            scaleY = 0.001f;
+            Invoke("Result", 0.245f);
+            Destroy(gameObject, 0.25f);
+        }
 
-        //transform.localScale = new Vector3(0.001f, 0.001f, -1f);
-        scaleX = 0.001f;
-        scaleY = 0.001f;
-        Invoke("Result", 0.245f);
-        Destroy(gameObject,0.25f);
     }
     void Result()
     {
-        
+        Time.timeScale = 1f;
         resultplayerpos = Mathf.Floor(transform.position.x);
         result.GetComponent<TitleAndRetry>().here();
     }

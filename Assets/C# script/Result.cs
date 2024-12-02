@@ -20,14 +20,15 @@ public class Result : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-            text.text = player.resultplayerpos + "M"
-          + "\n\nLV:" + player.Lv
-          + "\nAttack Damage:" + player.damage
-          + "\nAttack Speed:" + player.attackSpeed
-          + "\nMax Bullet:" + player.maxBullet
-          + "\nMove Speed:" + player.moveSpeed;
-        
+
+        text.text = player.resultplayerpos + "M"
+      + "\n\nLV:" + player.Lv
+      + "\nAttack Lv:" + player.attackLv + " / 8"
+      + "\nAttack Speed Lv:" + player.attackSpeedLv + " / 6"
+      + "\nMax Bullet  Lv:" + player.bulletLv + " / 6"
+      + "\nMove Speed Lv:" + player.speedLv + " / 7";
+
+
 
     }
 }
