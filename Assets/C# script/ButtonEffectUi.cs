@@ -10,34 +10,39 @@ public class ButtonEffectUi : MonoBehaviour
 
     public Button btn;
     public int buttonCh = 0;
+
+    public Player player;
     void Start()
     {
-
+        
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup != null)
         {
             canvasGroup.alpha = 0f;
         }
-        if(buttonCh == 1)
+        if (buttonCh == 1 && player.attackLv < 7)
         {
             btn = GameObject.Find("Attack").GetComponent<Button>();
             btn.onClick.AddListener(Attack);
+
+            //Debug.Log(buttonCh);
         }
-        if (buttonCh == 2)
+        if (buttonCh == 2 && player.attackSpeedLv <5)
         {
             btn = GameObject.Find("AttackSpeed").GetComponent<Button>();
             btn.onClick.AddListener(AttackSpeed);
         }
-        if (buttonCh == 3)
+        if (buttonCh == 3 && player.bulletLv < 5)
         {
             btn = GameObject.Find("BulletUp").GetComponent<Button>();
             btn.onClick.AddListener(BulletUp);
         }
-        if (buttonCh == 4)
+        if (buttonCh == 4 && player.speedLv < 6)
         {
             btn = GameObject.Find("Speed").GetComponent<Button>();
             btn.onClick.AddListener(Speed);
         }
+        
     }
 
     

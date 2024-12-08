@@ -19,10 +19,10 @@ public class StatsUi : MonoBehaviour
     {
 
         StatsText.text ="LV: " + player.Lv
-                        +"\nAttack Lv: " + player.attackLv + " / 8"
-                        +"\nAttack Speed Lv: " + player.attackSpeedLv + " / 6"
-                        +"\nMax Bullet Lv: " + player.bulletLv + " / 6"
-                        +"\nMove Speed Lv: " + player.speedLv + " / 7"
+                        +"\n      : " + player.attackLv + " / 8"
+                        +"\n      : " + player.attackSpeedLv + " / 6"
+                        +"\n      : " + player.bulletLv + " / 6"
+                        +"\n      : " + player.speedLv + " / 7"
                         +"\nUpgrade Count: " + player.UpgradeChance;
     }
     

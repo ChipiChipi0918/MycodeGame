@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.BoolParameter;
 
 public class TitleAndRetry : MonoBehaviour
 {
@@ -25,6 +26,17 @@ public class TitleAndRetry : MonoBehaviour
     void Result()
     {
         gameObject.SetActive(true);
+        StopAllCoroutines();
+        StartCoroutine(Corou());
+    }
+    IEnumerator Corou()
+    {
+        Time.timeScale = 1f;
+        new WaitForSeconds(0.3f);
+        Time.timeScale = 0.5f;
+        new WaitForSeconds(0.3f);
+        Time.timeScale = 0;
+        yield return 0;
     }
     public void Title()
     {

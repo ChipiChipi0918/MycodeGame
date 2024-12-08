@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
     public GameObject lvBoxUi;
 
     public GameObject result;
+    
 
     public float dashCool = 0.2f;
     private bool dashOk = true;
@@ -182,7 +183,10 @@ public class Player : MonoBehaviour
     {
         if(transform.position.x >= 200)
         {
+            
             shake.GetComponent<Bgm>().BossSound();
+            
+            
         }
         if(attackSpeed <= 0.1f)
         {
