@@ -25,7 +25,9 @@ public class Bgm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        /*
+         myaudio = this.GetComponent<EcECE>(); 
+         */
     }
     public void BossSound()
     {

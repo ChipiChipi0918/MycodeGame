@@ -6,7 +6,7 @@ public class laser : MonoBehaviour
 {
     private Renderer objectRenderer;
     private Color ObjColor;
-    private bool hello = false;
+    public bool hello = false;
 
     void Start()
     {
